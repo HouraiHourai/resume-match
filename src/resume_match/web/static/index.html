@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ResumeMatch - 简历匹配小助手</title>
+  <link rel="stylesheet" href="/static/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <!-- ===== Sidebar ===== -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="brand">
+          <svg class="brand-mark" width="28" height="28" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <defs>
+              <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#ffd93d;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#ff6b35;stop-opacity:1" />
+              </linearGradient>
+            </defs>
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+            <polyline points="10 9 9 9 8 9"></polyline>
+          </svg>
+          <span class="brand-name">简历智能匹配分析</span>
+        </div>
+        <p class="tagline">AI 驱动的简历与岗位匹配分析工具</p>
+      </div>
+
+      <button class="new-btn" id="new-analysis-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14" /><path d="M12 5v14" />
+        </svg>
+        新分析
+      </button>
+      <div class="history-count" id="history-count">历史 (0)</div>
+      <div class="history-list" id="history-list"></div>
+    </aside>
+    <div class="sidebar-scrim" id="sidebar-scrim"></div>
+
+    <!-- ===== Main area ===== -->
+    <div class="main-area">
+      <nav class="stepper" id="stepper" aria-label="分析进度" style="display: none;">
+        <div class="loading-stage">
+          <span class="loading-spinner"></span>
+          <span class="stage-text" id="stage-text"></span>
+        </div>
+      </nav>
+
+      <main class="container">
+        <!-- 输入区 -->
+        <section class="card input-card" id="input-panel">
+          <label class="field-label" for="company-name">公司名称（可选）</label>
+          <input type="text" id="company-name" placeholder="输入 URL 时无需填写；输入 JD 文本时可选择填写（如：字节跳动、腾讯）" />
+
+          <label class="field-label" for="jd-text">岗位 JD 原文或 URL</label>
+          <textarea id="jd-text" placeholder="粘贴岗位 URL 或完整 JD 文本（至少 200 字）…"></textarea>
+
+          <label class="field-label" for="resume-file">简历 PDF</label>
+          <label class="file-drop" id="file-drop">
+            <input type="file" id="resume-file" accept="application/pdf" hidden />
+            <svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="17 8 12 3 7 8" /><line x1="12" x2="12" y1="3" y2="15" />
+            </svg>
+            <span id="file-name">点击选择 PDF 简历</span>
+          </label>
+
+          <button id="analyze-btn" class="primary-btn">
+            <svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="6 3 20 12 6 21 6 3" />
+            </svg>
+            开始分析
+          </button>
+          <p id="input-error" class="input-error" hidden></p>
+        </section>
+
+        <!-- 结果区 -->
+        <section class="card result-card" id="result-panel" hidden>
+          <div class="result-head">
+            <div class="score-ring" id="score-ring">
+              <div class="score-inner">
+                <span class="score-num" id="score-num">–</span>
+                <span class="score-max">/100</span>
+              </div>
+            </div>
+            <div class="verdict">
+              <span class="badge" id="apply-badge">–</span>
+              <p class="verdict-reason" id="apply-reason"></p>
+            </div>
+          </div>
+
+          <!-- 投递成功率拆解 -->
+          <div class="result-block">
+            <h3>投递成功率拆解</h3>
+            <div class="score-breakdown" id="score-breakdown"></div>
+          </div>
+
+          <div class="result-block">
+            <h3>技能匹配</h3>
+            <div class="skills" id="skills"></div>
+          </div>
+          <div class="result-block" id="company-risk-block" hidden>
+            <h3>公司风险评估</h3>
+            <div id="company-risk-content"></div>
+          </div>
+          <div class="result-block">
+            <h3>简历改写建议</h3>
+            <div id="rewrites"></div>
+          </div>
+          <div class="result-block" id="similar-block" hidden>
+            <h3>相似投递参考</h3>
+            <div class="similar-cards" id="similar-cards"></div>
+          </div>
+          <div class="result-block">
+            <h3>岗位准备重点</h3>
+            <ul id="prep-list" class="plain-list"></ul>
+          </div>
+          <div class="result-block" id="questions-block" hidden>
+            <h3>可询问招聘方的问题</h3>
+            <ul id="questions-list" class="plain-list"></ul>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+      </footer>
+    </div>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

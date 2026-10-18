@@ -1,0 +1,40 @@
+[project]
+name = "resume-match"
+version = "0.1.0"
+description = "AI-powered resume-JD matching assistant with ReAct Agent"
+authors = [{ name = "Eirudy" }]
+requires-python = ">=3.14,<3.15"
+dependencies = [
+    "langgraph>=0.2.0",
+    "langchain>=0.3.0",
+    "langchain-openai>=0.2.0",
+    "pydantic>=2.0",
+    "python-dotenv>=1.0",
+    "pdfplumber>=0.11",
+    "httpx>=0.27",
+    "beautifulsoup4>=4.12",
+    "lxml>=5.0",
+    "fastapi>=0.115",
+    "uvicorn>=0.30",
+    "python-multipart>=0.0.9",
+    "chromadb>=0.5",
+    "playwright>=1.40",
+    "rank-bm25>=0.2",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23",
+    "ruff>=0.6",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/resume_match"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -1,0 +1,2363 @@
+{
+  "schema_version": 1,
+  "name": "synthetic-jd-pilot-v1",
+  "provenance": "synthetic",
+  "label_source": "synthetic_author",
+  "reviewer": "",
+  "description": "AI 生成的合成评测数据：32 条候选 JD、30 条查询及初始相关性标签，开发集 6 条、测试集 24 条。用于离线流程验证，不代表真实招聘样本或人工标注结果。",
+  "documents": [
+    {
+      "id": "d01",
+      "source": "synthetic://pilot-v1/d01",
+      "text": "岗位：企业知识库Agent实习生。要求：Python、LangGraph、RAG、FastAPI。职责：开发企业问答Agent，编排检索工具和结构化响应。",
+      "jd": {
+        "role_title": "企业知识库Agent实习生",
+        "company": null,
+        "seniority": "intern",
+        "hard_skills": [
+          "Python",
+          "LangGraph",
+          "RAG",
+          "FastAPI"
+        ],
+        "domain": "AI Application",
+        "key_responsibilities": [
+          "参与企业知识库Agent实习生相关开发和验证"
+        ]
+      }
+    },
+    {
+      "id": "d02",
+      "source": "synthetic://pilot-v1/d02",
+      "text": "岗位：智能客服应用开发。要求：Python、LangChain、RAG、Chroma。职责：维护知识库召回和客服答案引用，支持多轮问答。",
+      "jd": {
+        "role_title": "智能客服应用开发",
+        "company": null,
+        "seniority": "junior",
+        "hard_skills": [
+          "Python",
+          "LangChain",
+          "RAG",
+          "Chroma"
+        ],
+        "domain": "AI Application",
+        "key_responsibilities": [
+          "参与智能客服应用开发相关开发和验证"
+        ]
+      }
+    },
+    {
+      "id": "d03",
+      "source": "synthetic://pilot-v1/d03",
+      "text": "岗位：检索增强工程师。要求：Python、BM25、Embedding、Elasticsearch。职责：建设关键词与向量混合检索，评测排序相关性。",
+      "jd": {
+        "role_title": "检索增强工程师",
+        "company": null,
+        "seniority": "junior",
+        "hard_skills": [
+          "Python",
+          "BM25",
+          "Embedding",
+          "Elasticsearch"
+        ],
+        "domain": "Search",
+        "key_responsibilities": [
+          "参与检索增强工程师相关开发和验证"
+        ]
+      }
+    },
+    {
+      "id": "d04",
+      "source": "synthetic://pilot-v1/d04",
+      "text": "岗位：推荐排序算法研究员。要求：Python、PyTorch、Learning to Rank。职责：训练推荐排序模型，负责线上实验和推荐特征。",
+      "jd": {
+        "role_title": "推荐排序算法研究员",
+        "company": null,
+        "seniority": "senior",
+        "hard_skills": [
+          "Python",
+          "PyTorch",
+          "Learning to Rank"
+        ],
+        "domain": "Recommendation",
+        "key_responsibilities": [
+          "参与推荐排序算法研究员相关开发和验证"
+        ]
+      }
+    },
+    {
+      "id": "d05",
+      "source": "synthetic://pilot-v1/d05",
+      "text": "岗位：Python服务端实习。要求：Python、FastAPI、asyncio、PostgreSQL。职责：开发异步API、数据库接口和后端服务。",
+      "jd": {
+        "role_title": "Python服务端实习",
+        "company": null,
+        "seniority": "intern",
+        "hard_skills": [
+          "Python",
+          "FastAPI",
+          "asyncio",
+          "PostgreSQL"
+        ],
+        "domain": "Enterprise SaaS",
+        "key_responsibilities": [
+          "参与Python服务端实习相关开发和验证"
+        ]
+      }
+    },
+    {
+      "id": "d06",
+      "source": "synthetic://pilot-v1/d06",
+      "text": "岗位：企业管理后台开发。要求：Python、Django、MySQL、Redis。职责：维护业务后台、权限与关系数据库。",
+      "jd": {
+        "role_title": "企业管理后台开发",
+        "company": null,
+        "seniority": "junior",
+        "hard_skills": [
+          "Python",
+          "Django",
+          "MySQL",
+          "Redis"
+        ],
+        "domain": "Enterprise SaaS",
+        "key_responsibilities": [
+          "参与企业管理后台开发相关开发和验证"
+        ]
+      }
+    },
+    {
+      "id": "d07",
+      "source": "synthetic://pilot-v1/d07",
+      "text": "岗位：Java后端实习。要求：Java、Spring Boot、MySQL、Redis。职责：实现电商订单接口与缓存。",
+      "jd": {
+        "role_title": "Java后端实习",
+        "company": null,
+        "seniority": "intern",
+        "hard_skills": [
+          "Java",
+          "Spring Boot",
+          "MySQL",
+          "Redis"
+        ],
+        "domain": "E-commerce",
+        "key_responsibilities": [
+          "参与Java后端实习相关开发和验证"
+        ]
+      }
+    },
+    {
+      "id": "d08",
+      "source": "synthetic://pilot-v1/d08",
+      "text": "岗位：网页前端开发。要求：JavaScript、TypeScript、React、CSS。职责：开发交互页面和组件，消费后端接口。",
+      "jd": {
+        "role_title": "网页前端开发",
+        "company": null,
+        "seniority": "intern",
+        "hard_skills": [
+          "JavaScript",
+          "TypeScript",
+          "React",
+          "CSS"
+        ],
+        "domain": "Web",
+        "key_responsibilities": [
+          "参与网页前端开发相关开发和验证"
+        ]
+      }
+    },
+    {
+      "id": "d09",
+      "source": "synthetic://pilot-v1/d09",
+      "text": "岗位：数据采集工程实习。要求：Python、httpx、Playwright、HTML。职责：采集动态网页，处理正文清洗与失败重试。",
+      "jd": {
+        "role_title": "数据采集工程实习",
+        "company": null,
+        "seniority": "intern",
+        "hard_skills": [
+          "Python",
+          "httpx",
+          "Playwright",
+          "HTML"
+        ],
+        "domain": "Data Engineering",
+        "key_responsibilities": [
+          "参与数据采集工程实习相关开发和验证"
+        ]
+      }
+    },
+    {
+      "id": "d10",
+      "source": "synthetic://pilot-v1/d10",
+      "text": "岗位：测试开发实习。要求：Python、pytest、Playwright、HTTP。职责：编写接口和浏览器自动化测试。",
+      "jd": {
+        "role_title": "测试开发实习",
+        "company": null,
+        "seniority": "intern",
+        "hard_skills": [
+          "Python",
+          "pytest",
+          "Playwright",
+          "HTTP"
+        ],
+        "domain": "Quality Engineering",
+        "key_responsibilities": [
+          "参与测试开发实习相关开发和验证"
+        ]
+      }
+    },
+    {
+      "id": "d11",
+      "source": "synthetic://pilot-v1/d11",
+      "text": "岗位：Agent工具平台开发。要求：Python、Function Calling、Pydantic、LangGraph。职责：建设模型工具注册、参数验证与执行状态。",
+      "jd": {
+        "role_title": "Agent工具平台开发",
+        "company": null,
+        "seniority": "junior",
+        "hard_skills": [
+          "Python",
+          "Function Calling",
+          "Pydantic",
+          "LangGraph"
+        ],
+        "domain": "AI Application",
+        "key_responsibilities": [
+          "参与Agent工具平台开发相关开发和验证"
+        ]
+      }
+    },
+    {
+      "id": "d12",
+      "source": "synthetic://pilot-v1/d12",
+      "text": "岗位：多模态模型训练研究。要求：Python、PyTorch、CUDA、Transformer。职责：训练多模态模型，优化GPU内核与训练效率。",
+      "jd": {
+        "role_title": "多模态模型训练研究",
+        "company": null,
+        "seniority": "senior",
+        "hard_skills": [
+          "Python",
+          "PyTorch",
+          "CUDA",
+          "Transformer"
+        ],
+        "domain": "AI Research",
+        "key_responsibilities": [
+          "参与多模态模型训练研究相关开发和验证"
+        ]
+      }
+    },
+    {
+      "id": "d13",
+      "source": "synthetic://pilot-v1/d13",
+      "text": "岗位：容器平台运维实习。要求：Linux、Docker、Kubernetes、Prometheus。职责：维护容器部署、健康检查和监控。",
+      "jd": {
+        "role_title": "容器平台运维实习",
+        "company": null,
+        "seniority": "intern",
+        "hard_skills": [
+          "Linux",
+          "Docker",
+          "Kubernetes",
+          "Prometheus"
+        ],
+        "domain": "Infrastructure",
+        "key_responsibilities": [
+          "参与容器平台运维实习相关开发和验证"
+        ]
+      }
+    },
+    {
+      "id": "d14",
+      "source": "synthetic://pilot-v1/d14",
+      "text": "岗位：平台服务SRE。要求：Go、Linux、Kubernetes、Redis。职责：负责分布式平台可用性、容量和故障响应。",
+      "jd": {
+        "role_title": "平台服务SRE",
+        "company": null,
+        "seniority": "senior",
+        "hard_skills": [
+          "Go",
+          "Linux",
+          "Kubernetes",
+          "Redis"
+        ],
+        "domain": "Infrastructure",
+        "key_responsibilities": [
+          "参与平台服务SRE相关开发和验证"
+        ]
+      }
+    },
+    {
+      "id": "d15",
+      "source": "synthetic://pilot-v1/d15",
+      "text": "岗位：数据仓库开发。要求：SQL、Python、Spark、Airflow。职责：开发离线数仓ETL，管理调度和数据质量。",
+      "jd": {
+        "role_title": "数据仓库开发",
+        "company": null,
+        "seniority": "junior",
+        "hard_skills": [
+          "SQL",
+          "Python",
+          "Spark",
+          "Airflow"
+        ],
+        "domain": "Data Engineering",
+        "key_responsibilities": [
+          "参与数据仓库开发相关开发和验证"
+        ]
+      }
+    },
+    {
+      "id": "d16",
+      "source": "synthetic://pilot-v1/d16",
+      "text": "岗位：数据分析实习。要求：SQL、Python、pandas、Excel。职责：分析业务数据并制作报表。",
+      "jd": {
+        "role_title": "数据分析实习",
+        "company": null,
+        "seniority": "intern",
+        "hard_skills": [
+          "SQL",
+          "Python",
+          "pandas",
+          "Excel"
+        ],
+        "domain": "Analytics",
+        "key_responsibilities": [
+          "参与数据分析实习相关开发和验证"
+        ]
+      }
+    },
+    {
+      "id": "d17",
+      "source": "synthetic://pilot-v1/d17",
+      "text": "岗位：计算机视觉算法实习。要求：Python、PyTorch、OpenCV。职责：训练图像检测模型，评估标注数据。",
+      "jd": {
+        "role_title": "计算机视觉算法实习",
+        "company": null,
+        "seniority": "intern",
+        "hard_skills": [
+          "Python",
+          "PyTorch",
+          "OpenCV"
+        ],
+        "domain": "Computer Vision",
+        "key_responsibilities": [
+          "参与计算机视觉算法实习相关开发和验证"
+        ]
+      }
+    },
+    {
+      "id": "d18",
+      "source": "synthetic://pilot-v1/d18",
+      "text": "岗位：NLP模型微调实习。要求：Python、PyTorch、LoRA、Transformer。职责：处理文本训练集并微调语言模型。",
+      "jd": {
+        "role_title": "NLP模型微调实习",
+        "company": null,
+        "seniority": "intern",
+        "hard_skills": [
+          "Python",
+          "PyTorch",
+          "LoRA",
+          "Transformer"
+        ],
+        "domain": "NLP",
+        "key_responsibilities": [
+          "参与NLP模型微调实习相关开发和验证"
+        ]
+      }
+    },
+    {
+      "id": "d19",
+      "source": "synthetic://pilot-v1/d19",
+      "text": "岗位：Go高并发服务开发。要求：Go、gRPC、Redis、MySQL。职责：开发RPC后端并优化并发请求处理。",
+      "jd": {
+        "role_title": "Go高并发服务开发",
+        "company": null,
+        "seniority": "junior",
+        "hard_skills": [
+          "Go",
+          "gRPC",
+          "Redis",
+          "MySQL"
+        ],
+        "domain": "Backend",
+        "key_responsibilities": [
+          "参与Go高并发服务开发相关开发和验证"
+        ]
+      }
+    },
+    {
+      "id": "d20",
+      "source": "synthetic://pilot-v1/d20",
+      "text": "岗位：C++基础架构实习。要求：C++、Linux、TCP/IP、CMake。职责：实现网络组件，调试系统内存与并发问题。",
+      "jd": {
+        "role_title": "C++基础架构实习",
+        "company": null,
+        "seniority": "intern",
+        "hard_skills": [
+          "C++",
+          "Linux",
+          "TCP/IP",
+          "CMake"
+        ],
+        "domain": "Systems",
+        "key_responsibilities": [
+          "参与C++基础架构实习相关开发和验证"
+        ]
+      }
+    },
+    {
+      "id": "d21",
+      "source": "synthetic://pilot-v1/d21",
+      "text": "岗位：文档解析与知识入库。要求：Python、PDF、OCR、Embedding。职责：解析PDF并抽取表格，构建知识入库管线。",
+      "jd": {
+        "role_title": "文档解析与知识入库",
+        "company": null,
+        "seniority": "intern",
+        "hard_skills": [
+          "Python",
+          "PDF",
+          "OCR",
+          "Embedding"
+        ],
+        "domain": "AI Application",
+        "key_responsibilities": [
+          "参与文档解析与知识入库相关开发和验证"
+        ]
+      }
+    },
+    {
+      "id": "d22",
+      "source": "synthetic://pilot-v1/d22",
+      "text": "岗位：对话式应用后端。要求：Python、FastAPI、SSE、LLM。职责：开发模型接口与流式响应，展示任务进度。",
+      "jd": {
+        "role_title": "对话式应用后端",
+        "company": null,
+        "seniority": "intern",
+        "hard_skills": [
+          "Python",
+          "FastAPI",
+          "SSE",
+          "LLM"
+        ],
+        "domain": "AI Application",
+        "key_responsibilities": [
+          "参与对话式应用后端相关开发和验证"
+        ]
+      }
+    },
+    {
+      "id": "d23",
+      "source": "synthetic://pilot-v1/d23",
+      "text": "岗位：Workflow平台开发。要求：Python、LangGraph、Pydantic、SQLite。职责：实现带状态的业务流程和结构化任务结果。",
+      "jd": {
+        "role_title": "Workflow平台开发",
+        "company": null,
+        "seniority": "intern",
+        "hard_skills": [
+          "Python",
+          "LangGraph",
+          "Pydantic",
+          "SQLite"
+        ],
+        "domain": "AI Application",
+        "key_responsibilities": [
+          "参与Workflow平台开发相关开发和验证"
+        ]
+      }
+    },
+    {
+      "id": "d24",
+      "source": "synthetic://pilot-v1/d24",
+      "text": "岗位：信息检索评测实习。要求：Python、BM25、RAG、pytest。职责：构建标注集，评估检索召回和重排。",
+      "jd": {
+        "role_title": "信息检索评测实习",
+        "company": null,
+        "seniority": "intern",
+        "hard_skills": [
+          "Python",
+          "BM25",
+          "RAG",
+          "pytest"
+        ],
+        "domain": "Search",
+        "key_responsibilities": [
+          "参与信息检索评测实习相关开发和验证"
+        ]
+      }
+    },
+    {
+      "id": "d25",
+      "source": "synthetic://pilot-v1/d25",
+      "text": "岗位：资深Agent架构师。要求：Python、LangGraph、RAG、FastAPI。职责：设计复杂Agent平台，负责架构决策和团队指导。",
+      "jd": {
+        "role_title": "资深Agent架构师",
+        "company": null,
+        "seniority": "senior",
+        "hard_skills": [
+          "Python",
+          "LangGraph",
+          "RAG",
+          "FastAPI"
+        ],
+        "domain": "AI Application",
+        "key_responsibilities": [
+          "参与资深Agent架构师相关开发和验证"
+        ]
+      }
+    },
+    {
+      "id": "d26",
+      "source": "synthetic://pilot-v1/d26",
+      "text": "岗位：移动端安卓开发。要求：Kotlin、Java、Android。职责：开发原生移动页面与端侧交互。",
+      "jd": {
+        "role_title": "移动端安卓开发",
+        "company": null,
+        "seniority": "intern",
+        "hard_skills": [
+          "Kotlin",
+          "Java",
+          "Android"
+        ],
+        "domain": "Mobile",
+        "key_responsibilities": [
+          "参与移动端安卓开发相关开发和验证"
+        ]
+      }
+    },
+    {
+      "id": "d27",
+      "source": "synthetic://pilot-v1/d27",
+      "text": "岗位：Agent产品运营。要求：Excel、Prompt、用户研究。职责：收集用户反馈、整理运营活动，不承担系统开发。",
+      "jd": {
+        "role_title": "Agent产品运营",
+        "company": null,
+        "seniority": "intern",
+        "hard_skills": [
+          "Excel",
+          "Prompt",
+          "用户研究"
+        ],
+        "domain": "Operations",
+        "key_responsibilities": [
+          "参与Agent产品运营相关开发和验证"
+        ]
+      }
+    },
+    {
+      "id": "d28",
+      "source": "synthetic://pilot-v1/d28",
+      "text": "岗位：网络安全实习。要求：Python、Linux、HTTP、安全测试。职责：检查接口权限和网络安全风险。",
+      "jd": {
+        "role_title": "网络安全实习",
+        "company": null,
+        "seniority": "intern",
+        "hard_skills": [
+          "Python",
+          "Linux",
+          "HTTP",
+          "安全测试"
+        ],
+        "domain": "Security",
+        "key_responsibilities": [
+          "参与网络安全实习相关开发和验证"
+        ]
+      }
+    },
+    {
+      "id": "d29",
+      "source": "synthetic://pilot-v1/d29",
+      "text": "岗位：缓存与数据库服务。要求：Python、Redis、PostgreSQL、FastAPI。职责：实现缓存失效、数据库事务与接口幂等。",
+      "jd": {
+        "role_title": "缓存与数据库服务",
+        "company": null,
+        "seniority": "junior",
+        "hard_skills": [
+          "Python",
+          "Redis",
+          "PostgreSQL",
+          "FastAPI"
+        ],
+        "domain": "Backend",
+        "key_responsibilities": [
+          "参与缓存与数据库服务相关开发和验证"
+        ]
+      }
+    },
+    {
+      "id": "d30",
+      "source": "synthetic://pilot-v1/d30",
+      "text": "岗位：LLM网关后端。要求：Python、httpx、FastAPI、asyncio。职责：管理模型请求、超时、限流与备用服务切换。",
+      "jd": {
+        "role_title": "LLM网关后端",
+        "company": null,
+        "seniority": "junior",
+        "hard_skills": [
+          "Python",
+          "httpx",
+          "FastAPI",
+          "asyncio"
+        ],
+        "domain": "AI Application",
+        "key_responsibilities": [
+          "参与LLM网关后端相关开发和验证"
+        ]
+      }
+    },
+    {
+      "id": "d31",
+      "source": "synthetic://pilot-v1/d31",
+      "text": "岗位：前端Agent交互实习。要求：TypeScript、React、SSE、LLM。职责：开发模型对话界面及流式结果展示，主要使用TypeScript。",
+      "jd": {
+        "role_title": "前端Agent交互实习",
+        "company": null,
+        "seniority": "intern",
+        "hard_skills": [
+          "TypeScript",
+          "React",
+          "SSE",
+          "LLM"
+        ],
+        "domain": "AI Application",
+        "key_responsibilities": [
+          "参与前端Agent交互实习相关开发和验证"
+        ]
+      }
+    },
+    {
+      "id": "d32",
+      "source": "synthetic://pilot-v1/d32",
+      "text": "岗位：站内搜索服务实习。要求：Python、Elasticsearch、BM25、FastAPI。职责：提供关键词检索API，分析搜索相关性。",
+      "jd": {
+        "role_title": "站内搜索服务实习",
+        "company": null,
+        "seniority": "intern",
+        "hard_skills": [
+          "Python",
+          "Elasticsearch",
+          "BM25",
+          "FastAPI"
+        ],
+        "domain": "Search",
+        "key_responsibilities": [
+          "参与站内搜索服务实习相关开发和验证"
+        ]
+      }
+    }
+  ],
+  "queries": [
+    {
+      "id": "q01",
+      "source": "synthetic://pilot-v1/q01",
+      "text": "寻找Agent研发实习岗位；期望工作涉及Python、LangGraph、工具调用，业务领域为AI Application。",
+      "jd": {
+        "role_title": "Agent研发实习",
+        "company": null,
+        "seniority": "intern",
+        "hard_skills": [
+          "Python",
+          "LangGraph",
+          "工具调用"
+        ],
+        "domain": "AI Application",
+        "key_responsibilities": [
+          "参与Agent研发实习相关开发和验证"
+        ]
+      },
+      "split": "dev",
+      "relevance": {
+        "d01": 2,
+        "d02": 0,
+        "d03": 0,
+        "d04": 0,
+        "d05": 0,
+        "d06": 0,
+        "d07": 0,
+        "d08": 0,
+        "d09": 0,
+        "d10": 0,
+        "d11": 2,
+        "d12": 0,
+        "d13": 0,
+        "d14": 0,
+        "d15": 0,
+        "d16": 0,
+        "d17": 0,
+        "d18": 0,
+        "d19": 0,
+        "d20": 0,
+        "d21": 0,
+        "d22": 1,
+        "d23": 2,
+        "d24": 0,
+        "d25": 1,
+        "d26": 0,
+        "d27": 0,
+        "d28": 0,
+        "d29": 0,
+        "d30": 0,
+        "d31": 0,
+        "d32": 0
+      },
+      "excluded_ids": [],
+      "rationale": "合成标签草案：2=主要任务与岗位方向匹配，1=相邻方向或资历/技术栈部分匹配，0=不相关；需逐候选人工复核，勿作为真实招聘结论。",
+      "human_reviewed": false
+    },
+    {
+      "id": "q02",
+      "source": "synthetic://pilot-v1/q02",
+      "text": "寻找企业问答工程实习岗位；期望工作涉及Python、RAG、向量数据库，业务领域为AI Application。",
+      "jd": {
+        "role_title": "企业问答工程实习",
+        "company": null,
+        "seniority": "intern",
+        "hard_skills": [
+          "Python",
+          "RAG",
+          "向量数据库"
+        ],
+        "domain": "AI Application",
+        "key_responsibilities": [
+          "参与企业问答工程实习相关开发和验证"
+        ]
+      },
+      "split": "dev",
+      "relevance": {
+        "d01": 2,
+        "d02": 2,
+        "d03": 1,
+        "d04": 0,
+        "d05": 0,
+        "d06": 0,
+        "d07": 0,
+        "d08": 0,
+        "d09": 0,
+        "d10": 0,
+        "d11": 0,
+        "d12": 0,
+        "d13": 0,
+        "d14": 0,
+        "d15": 0,
+        "d16": 0,
+        "d17": 0,
+        "d18": 0,
+        "d19": 0,
+        "d20": 0,
+        "d21": 1,
+        "d22": 0,
+        "d23": 0,
+        "d24": 1,
+        "d25": 0,
+        "d26": 0,
+        "d27": 0,
+        "d28": 0,
+        "d29": 0,
+        "d30": 0,
+        "d31": 0,
+        "d32": 0
+      },
+      "excluded_ids": [],
+      "rationale": "合成标签草案：2=主要任务与岗位方向匹配，1=相邻方向或资历/技术栈部分匹配，0=不相关；需逐候选人工复核，勿作为真实招聘结论。",
+      "human_reviewed": false
+    },
+    {
+      "id": "q03",
+      "source": "synthetic://pilot-v1/q03",
+      "text": "寻找异步API研发助理岗位；期望工作涉及Python、FastAPI、asyncio，业务领域为Enterprise SaaS。",
+      "jd": {
+        "role_title": "异步API研发助理",
+        "company": null,
+        "seniority": "intern",
+        "hard_skills": [
+          "Python",
+          "FastAPI",
+          "asyncio"
+        ],
+        "domain": "Enterprise SaaS",
+        "key_responsibilities": [
+          "参与异步API研发助理相关开发和验证"
+        ]
+      },
+      "split": "dev",
+      "relevance": {
+        "d01": 0,
+        "d02": 0,
+        "d03": 0,
+        "d04": 0,
+        "d05": 2,
+        "d06": 0,
+        "d07": 0,
+        "d08": 0,
+        "d09": 0,
+        "d10": 0,
+        "d11": 0,
+        "d12": 0,
+        "d13": 0,
+        "d14": 0,
+        "d15": 0,
+        "d16": 0,
+        "d17": 0,
+        "d18": 0,
+        "d19": 0,
+        "d20": 0,
+        "d21": 0,
+        "d22": 1,
+        "d23": 0,
+        "d24": 0,
+        "d25": 0,
+        "d26": 0,
+        "d27": 0,
+        "d28": 0,
+        "d29": 1,
+        "d30": 2,
+        "d31": 0,
+        "d32": 0
+      },
+      "excluded_ids": [],
+      "rationale": "合成标签草案：2=主要任务与岗位方向匹配，1=相邻方向或资历/技术栈部分匹配，0=不相关；需逐候选人工复核，勿作为真实招聘结论。",
+      "human_reviewed": false
+    },
+    {
+      "id": "q04",
+      "source": "synthetic://pilot-v1/q04",
+      "text": "寻找动态网页抓取开发岗位；期望工作涉及Python、Playwright、网页解析，业务领域为Data Engineering。",
+      "jd": {
+        "role_title": "动态网页抓取开发",
+        "company": null,
+        "seniority": "intern",
+        "hard_skills": [
+          "Python",
+          "Playwright",
+          "网页解析"
+        ],
+        "domain": "Data Engineering",
+        "key_responsibilities": [
+          "参与动态网页抓取开发相关开发和验证"
+        ]
+      },
+      "split": "dev",
+      "relevance": {
+        "d01": 0,
+        "d02": 0,
+        "d03": 0,
+        "d04": 0,
+        "d05": 0,
+        "d06": 0,
+        "d07": 0,
+        "d08": 0,
+        "d09": 2,
+        "d10": 1,
+        "d11": 0,
+        "d12": 0,
+        "d13": 0,
+        "d14": 0,
+        "d15": 0,
+        "d16": 0,
+        "d17": 0,
+        "d18": 0,
+        "d19": 0,
+        "d20": 0,
+        "d21": 0,
+        "d22": 0,
+        "d23": 0,
+        "d24": 0,
+        "d25": 0,
+        "d26": 0,
+        "d27": 0,
+        "d28": 0,
+        "d29": 0,
+        "d30": 0,
+        "d31": 0,
+        "d32": 0
+      },
+      "excluded_ids": [],
+      "rationale": "合成标签草案：2=主要任务与岗位方向匹配，1=相邻方向或资历/技术栈部分匹配，0=不相关；需逐候选人工复核，勿作为真实招聘结论。",
+      "human_reviewed": false
+    },
+    {
+      "id": "q05",
+      "source": "synthetic://pilot-v1/q05",
+      "text": "寻找关键词检索研发岗位；期望工作涉及BM25、Elasticsearch、Python，业务领域为Search。",
+      "jd": {
+        "role_title": "关键词检索研发",
+        "company": null,
+        "seniority": "intern",
+        "hard_skills": [
+          "BM25",
+          "Elasticsearch",
+          "Python"
+        ],
+        "domain": "Search",
+        "key_responsibilities": [
+          "参与关键词检索研发相关开发和验证"
+        ]
+      },
+      "split": "dev",
+      "relevance": {
+        "d01": 0,
+        "d02": 0,
+        "d03": 2,
+        "d04": 0,
+        "d05": 0,
+        "d06": 0,
+        "d07": 0,
+        "d08": 0,
+        "d09": 0,
+        "d10": 0,
+        "d11": 0,
+        "d12": 0,
+        "d13": 0,
+        "d14": 0,
+        "d15": 0,
+        "d16": 0,
+        "d17": 0,
+        "d18": 0,
+        "d19": 0,
+        "d20": 0,
+        "d21": 0,
+        "d22": 0,
+        "d23": 0,
+        "d24": 2,
+        "d25": 0,
+        "d26": 0,
+        "d27": 0,
+        "d28": 0,
+        "d29": 0,
+        "d30": 0,
+        "d31": 0,
+        "d32": 2
+      },
+      "excluded_ids": [],
+      "rationale": "合成标签草案：2=主要任务与岗位方向匹配，1=相邻方向或资历/技术栈部分匹配，0=不相关；需逐候选人工复核，勿作为真实招聘结论。",
+      "human_reviewed": false
+    },
+    {
+      "id": "q06",
+      "source": "synthetic://pilot-v1/q06",
+      "text": "寻找容器部署与监控实习岗位；期望工作涉及Docker、Linux、监控，业务领域为Infrastructure。",
+      "jd": {
+        "role_title": "容器部署与监控实习",
+        "company": null,
+        "seniority": "intern",
+        "hard_skills": [
+          "Docker",
+          "Linux",
+          "监控"
+        ],
+        "domain": "Infrastructure",
+        "key_responsibilities": [
+          "参与容器部署与监控实习相关开发和验证"
+        ]
+      },
+      "split": "dev",
+      "relevance": {
+        "d01": 0,
+        "d02": 0,
+        "d03": 0,
+        "d04": 0,
+        "d05": 0,
+        "d06": 0,
+        "d07": 0,
+        "d08": 0,
+        "d09": 0,
+        "d10": 0,
+        "d11": 0,
+        "d12": 0,
+        "d13": 2,
+        "d14": 1,
+        "d15": 0,
+        "d16": 0,
+        "d17": 0,
+        "d18": 0,
+        "d19": 0,
+        "d20": 0,
+        "d21": 0,
+        "d22": 0,
+        "d23": 0,
+        "d24": 0,
+        "d25": 0,
+        "d26": 0,
+        "d27": 0,
+        "d28": 0,
+        "d29": 0,
+        "d30": 0,
+        "d31": 0,
+        "d32": 0
+      },
+      "excluded_ids": [],
+      "rationale": "合成标签草案：2=主要任务与岗位方向匹配，1=相邻方向或资历/技术栈部分匹配，0=不相关；需逐候选人工复核，勿作为真实招聘结论。",
+      "human_reviewed": false
+    },
+    {
+      "id": "q07",
+      "source": "synthetic://pilot-v1/q07",
+      "text": "寻找智能体业务编排开发岗位；期望工作涉及Python、LangGraph、Pydantic、状态管理，业务领域为AI Application。",
+      "jd": {
+        "role_title": "智能体业务编排开发",
+        "company": null,
+        "seniority": "intern",
+        "hard_skills": [
+          "Python",
+          "LangGraph",
+          "Pydantic",
+          "状态管理"
+        ],
+        "domain": "AI Application",
+        "key_responsibilities": [
+          "参与智能体业务编排开发相关开发和验证"
+        ]
+      },
+      "split": "test",
+      "relevance": {
+        "d01": 1,
+        "d02": 0,
+        "d03": 0,
+        "d04": 0,
+        "d05": 0,
+        "d06": 0,
+        "d07": 0,
+        "d08": 0,
+        "d09": 0,
+        "d10": 0,
+        "d11": 2,
+        "d12": 0,
+        "d13": 0,
+        "d14": 0,
+        "d15": 0,
+        "d16": 0,
+        "d17": 0,
+        "d18": 0,
+        "d19": 0,
+        "d20": 0,
+        "d21": 0,
+        "d22": 0,
+        "d23": 2,
+        "d24": 0,
+        "d25": 1,
+        "d26": 0,
+        "d27": 0,
+        "d28": 0,
+        "d29": 0,
+        "d30": 0,
+        "d31": 0,
+        "d32": 0
+      },
+      "excluded_ids": [],
+      "rationale": "合成标签草案：2=主要任务与岗位方向匹配，1=相邻方向或资历/技术栈部分匹配，0=不相关；需逐候选人工复核，勿作为真实招聘结论。",
+      "human_reviewed": false
+    },
+    {
+      "id": "q08",
+      "source": "synthetic://pilot-v1/q08",
+      "text": "寻找岗位检索评估助理岗位；期望工作涉及Python、RAG、BM25、评测，业务领域为Search。",
+      "jd": {
+        "role_title": "岗位检索评估助理",
+        "company": null,
+        "seniority": "intern",
+        "hard_skills": [
+          "Python",
+          "RAG",
+          "BM25",
+          "评测"
+        ],
+        "domain": "Search",
+        "key_responsibilities": [
+          "参与岗位检索评估助理相关开发和验证"
+        ]
+      },
+      "split": "test",
+      "relevance": {
+        "d01": 0,
+        "d02": 0,
+        "d03": 2,
+        "d04": 0,
+        "d05": 0,
+        "d06": 0,
+        "d07": 0,
+        "d08": 0,
+        "d09": 0,
+        "d10": 0,
+        "d11": 0,
+        "d12": 0,
+        "d13": 0,
+        "d14": 0,
+        "d15": 0,
+        "d16": 0,
+        "d17": 0,
+        "d18": 0,
+        "d19": 0,
+        "d20": 0,
+        "d21": 0,
+        "d22": 0,
+        "d23": 0,
+        "d24": 2,
+        "d25": 0,
+        "d26": 0,
+        "d27": 0,
+        "d28": 0,
+        "d29": 0,
+        "d30": 0,
+        "d31": 0,
+        "d32": 1
+      },
+      "excluded_ids": [],
+      "rationale": "合成标签草案：2=主要任务与岗位方向匹配，1=相邻方向或资历/技术栈部分匹配，0=不相关；需逐候选人工复核，勿作为真实招聘结论。",
+      "human_reviewed": false
+    },
+    {
+      "id": "q09",
+      "source": "synthetic://pilot-v1/q09",
+      "text": "寻找聊天应用流式接口开发岗位；期望工作涉及Python、SSE、FastAPI，业务领域为AI Application。",
+      "jd": {
+        "role_title": "聊天应用流式接口开发",
+        "company": null,
+        "seniority": "intern",
+        "hard_skills": [
+          "Python",
+          "SSE",
+          "FastAPI"
+        ],
+        "domain": "AI Application",
+        "key_responsibilities": [
+          "参与聊天应用流式接口开发相关开发和验证"
+        ]
+      },
+      "split": "test",
+      "relevance": {
+        "d01": 0,
+        "d02": 0,
+        "d03": 0,
+        "d04": 0,
+        "d05": 1,
+        "d06": 0,
+        "d07": 0,
+        "d08": 0,
+        "d09": 0,
+        "d10": 0,
+        "d11": 0,
+        "d12": 0,
+        "d13": 0,
+        "d14": 0,
+        "d15": 0,
+        "d16": 0,
+        "d17": 0,
+        "d18": 0,
+        "d19": 0,
+        "d20": 0,
+        "d21": 0,
+        "d22": 2,
+        "d23": 0,
+        "d24": 0,
+        "d25": 0,
+        "d26": 0,
+        "d27": 0,
+        "d28": 0,
+        "d29": 0,
+        "d30": 1,
+        "d31": 1,
+        "d32": 0
+      },
+      "excluded_ids": [],
+      "rationale": "合成标签草案：2=主要任务与岗位方向匹配，1=相邻方向或资历/技术栈部分匹配，0=不相关；需逐候选人工复核，勿作为真实招聘结论。",
+      "human_reviewed": false
+    },
+    {
+      "id": "q10",
+      "source": "synthetic://pilot-v1/q10",
+      "text": "寻找模型工具适配开发岗位；期望工作涉及Python、Function Calling、参数校验，业务领域为AI Application。",
+      "jd": {
+        "role_title": "模型工具适配开发",
+        "company": null,
+        "seniority": "intern",
+        "hard_skills": [
+          "Python",
+          "Function Calling",
+          "参数校验"
+        ],
+        "domain": "AI Application",
+        "key_responsibilities": [
+          "参与模型工具适配开发相关开发和验证"
+        ]
+      },
+      "split": "test",
+      "relevance": {
+        "d01": 1,
+        "d02": 0,
+        "d03": 0,
+        "d04": 0,
+        "d05": 0,
+        "d06": 0,
+        "d07": 0,
+        "d08": 0,
+        "d09": 0,
+        "d10": 0,
+        "d11": 2,
+        "d12": 0,
+        "d13": 0,
+        "d14": 0,
+        "d15": 0,
+        "d16": 0,
+        "d17": 0,
+        "d18": 0,
+        "d19": 0,
+        "d20": 0,
+        "d21": 0,
+        "d22": 0,
+        "d23": 2,
+        "d24": 0,
+        "d25": 0,
+        "d26": 0,
+        "d27": 0,
+        "d28": 0,
+        "d29": 0,
+        "d30": 0,
+        "d31": 0,
+        "d32": 0
+      },
+      "excluded_ids": [],
+      "rationale": "合成标签草案：2=主要任务与岗位方向匹配，1=相邻方向或资历/技术栈部分匹配，0=不相关；需逐候选人工复核，勿作为真实招聘结论。",
+      "human_reviewed": false
+    },
+    {
+      "id": "q11",
+      "source": "synthetic://pilot-v1/q11",
+      "text": "寻找企业PDF知识处理实习岗位；期望工作涉及Python、PDF、Embedding，业务领域为AI Application。",
+      "jd": {
+        "role_title": "企业PDF知识处理实习",
+        "company": null,
+        "seniority": "intern",
+        "hard_skills": [
+          "Python",
+          "PDF",
+          "Embedding"
+        ],
+        "domain": "AI Application",
+        "key_responsibilities": [
+          "参与企业PDF知识处理实习相关开发和验证"
+        ]
+      },
+      "split": "test",
+      "relevance": {
+        "d01": 1,
+        "d02": 1,
+        "d03": 0,
+        "d04": 0,
+        "d05": 0,
+        "d06": 0,
+        "d07": 0,
+        "d08": 0,
+        "d09": 0,
+        "d10": 0,
+        "d11": 0,
+        "d12": 0,
+        "d13": 0,
+        "d14": 0,
+        "d15": 0,
+        "d16": 0,
+        "d17": 0,
+        "d18": 0,
+        "d19": 0,
+        "d20": 0,
+        "d21": 2,
+        "d22": 0,
+        "d23": 0,
+        "d24": 0,
+        "d25": 0,
+        "d26": 0,
+        "d27": 0,
+        "d28": 0,
+        "d29": 0,
+        "d30": 0,
+        "d31": 0,
+        "d32": 0
+      },
+      "excluded_ids": [],
+      "rationale": "合成标签草案：2=主要任务与岗位方向匹配，1=相邻方向或资历/技术栈部分匹配，0=不相关；需逐候选人工复核，勿作为真实招聘结论。",
+      "human_reviewed": false
+    },
+    {
+      "id": "q12",
+      "source": "synthetic://pilot-v1/q12",
+      "text": "寻找模型API可靠性开发岗位；期望工作涉及Python、httpx、限流、重试，业务领域为AI Application。",
+      "jd": {
+        "role_title": "模型API可靠性开发",
+        "company": null,
+        "seniority": "intern",
+        "hard_skills": [
+          "Python",
+          "httpx",
+          "限流",
+          "重试"
+        ],
+        "domain": "AI Application",
+        "key_responsibilities": [
+          "参与模型API可靠性开发相关开发和验证"
+        ]
+      },
+      "split": "test",
+      "relevance": {
+        "d01": 0,
+        "d02": 0,
+        "d03": 0,
+        "d04": 0,
+        "d05": 1,
+        "d06": 0,
+        "d07": 0,
+        "d08": 0,
+        "d09": 0,
+        "d10": 0,
+        "d11": 0,
+        "d12": 0,
+        "d13": 0,
+        "d14": 0,
+        "d15": 0,
+        "d16": 0,
+        "d17": 0,
+        "d18": 0,
+        "d19": 0,
+        "d20": 0,
+        "d21": 0,
+        "d22": 1,
+        "d23": 0,
+        "d24": 0,
+        "d25": 0,
+        "d26": 0,
+        "d27": 0,
+        "d28": 0,
+        "d29": 0,
+        "d30": 2,
+        "d31": 0,
+        "d32": 0
+      },
+      "excluded_ids": [],
+      "rationale": "合成标签草案：2=主要任务与岗位方向匹配，1=相邻方向或资历/技术栈部分匹配，0=不相关；需逐候选人工复核，勿作为真实招聘结论。",
+      "human_reviewed": false
+    },
+    {
+      "id": "q13",
+      "source": "synthetic://pilot-v1/q13",
+      "text": "寻找混合召回研发实习岗位；期望工作涉及Python、Embedding、BM25、RAG，业务领域为Search。",
+      "jd": {
+        "role_title": "混合召回研发实习",
+        "company": null,
+        "seniority": "intern",
+        "hard_skills": [
+          "Python",
+          "Embedding",
+          "BM25",
+          "RAG"
+        ],
+        "domain": "Search",
+        "key_responsibilities": [
+          "参与混合召回研发实习相关开发和验证"
+        ]
+      },
+      "split": "test",
+      "relevance": {
+        "d01": 1,
+        "d02": 0,
+        "d03": 2,
+        "d04": 0,
+        "d05": 0,
+        "d06": 0,
+        "d07": 0,
+        "d08": 0,
+        "d09": 0,
+        "d10": 0,
+        "d11": 0,
+        "d12": 0,
+        "d13": 0,
+        "d14": 0,
+        "d15": 0,
+        "d16": 0,
+        "d17": 0,
+        "d18": 0,
+        "d19": 0,
+        "d20": 0,
+        "d21": 0,
+        "d22": 0,
+        "d23": 0,
+        "d24": 2,
+        "d25": 0,
+        "d26": 0,
+        "d27": 0,
+        "d28": 0,
+        "d29": 0,
+        "d30": 0,
+        "d31": 0,
+        "d32": 1
+      },
+      "excluded_ids": [],
+      "rationale": "合成标签草案：2=主要任务与岗位方向匹配，1=相邻方向或资历/技术栈部分匹配，0=不相关；需逐候选人工复核，勿作为真实招聘结论。",
+      "human_reviewed": false
+    },
+    {
+      "id": "q14",
+      "source": "synthetic://pilot-v1/q14",
+      "text": "寻找缓存接口开发实习岗位；期望工作涉及Python、Redis、FastAPI，业务领域为Backend。",
+      "jd": {
+        "role_title": "缓存接口开发实习",
+        "company": null,
+        "seniority": "intern",
+        "hard_skills": [
+          "Python",
+          "Redis",
+          "FastAPI"
+        ],
+        "domain": "Backend",
+        "key_responsibilities": [
+          "参与缓存接口开发实习相关开发和验证"
+        ]
+      },
+      "split": "test",
+      "relevance": {
+        "d01": 0,
+        "d02": 0,
+        "d03": 0,
+        "d04": 0,
+        "d05": 1,
+        "d06": 1,
+        "d07": 0,
+        "d08": 0,
+        "d09": 0,
+        "d10": 0,
+        "d11": 0,
+        "d12": 0,
+        "d13": 0,
+        "d14": 0,
+        "d15": 0,
+        "d16": 0,
+        "d17": 0,
+        "d18": 0,
+        "d19": 0,
+        "d20": 0,
+        "d21": 0,
+        "d22": 0,
+        "d23": 0,
+        "d24": 0,
+        "d25": 0,
+        "d26": 0,
+        "d27": 0,
+        "d28": 0,
+        "d29": 2,
+        "d30": 0,
+        "d31": 0,
+        "d32": 0
+      },
+      "excluded_ids": [],
+      "rationale": "合成标签草案：2=主要任务与岗位方向匹配，1=相邻方向或资历/技术栈部分匹配，0=不相关；需逐候选人工复核，勿作为真实招聘结论。",
+      "human_reviewed": false
+    },
+    {
+      "id": "q15",
+      "source": "synthetic://pilot-v1/q15",
+      "text": "寻找Web接口自动化实习岗位；期望工作涉及Python、pytest、HTTP，业务领域为Quality Engineering。",
+      "jd": {
+        "role_title": "Web接口自动化实习",
+        "company": null,
+        "seniority": "intern",
+        "hard_skills": [
+          "Python",
+          "pytest",
+          "HTTP"
+        ],
+        "domain": "Quality Engineering",
+        "key_responsibilities": [
+          "参与Web接口自动化实习相关开发和验证"
+        ]
+      },
+      "split": "test",
+      "relevance": {
+        "d01": 0,
+        "d02": 0,
+        "d03": 0,
+        "d04": 0,
+        "d05": 0,
+        "d06": 0,
+        "d07": 0,
+        "d08": 0,
+        "d09": 0,
+        "d10": 2,
+        "d11": 0,
+        "d12": 0,
+        "d13": 0,
+        "d14": 0,
+        "d15": 0,
+        "d16": 0,
+        "d17": 0,
+        "d18": 0,
+        "d19": 0,
+        "d20": 0,
+        "d21": 0,
+        "d22": 0,
+        "d23": 0,
+        "d24": 1,
+        "d25": 0,
+        "d26": 0,
+        "d27": 0,
+        "d28": 1,
+        "d29": 0,
+        "d30": 0,
+        "d31": 0,
+        "d32": 0
+      },
+      "excluded_ids": [],
+      "rationale": "合成标签草案：2=主要任务与岗位方向匹配，1=相邻方向或资历/技术栈部分匹配，0=不相关；需逐候选人工复核，勿作为真实招聘结论。",
+      "human_reviewed": false
+    },
+    {
+      "id": "q16",
+      "source": "synthetic://pilot-v1/q16",
+      "text": "寻找LLM应用工程实习岗位；期望工作涉及Python、LangChain、知识问答，业务领域为AI Application。",
+      "jd": {
+        "role_title": "LLM应用工程实习",
+        "company": null,
+        "seniority": "intern",
+        "hard_skills": [
+          "Python",
+          "LangChain",
+          "知识问答"
+        ],
+        "domain": "AI Application",
+        "key_responsibilities": [
+          "参与LLM应用工程实习相关开发和验证"
+        ]
+      },
+      "split": "test",
+      "relevance": {
+        "d01": 2,
+        "d02": 2,
+        "d03": 0,
+        "d04": 0,
+        "d05": 0,
+        "d06": 0,
+        "d07": 0,
+        "d08": 0,
+        "d09": 0,
+        "d10": 0,
+        "d11": 1,
+        "d12": 0,
+        "d13": 0,
+        "d14": 0,
+        "d15": 0,
+        "d16": 0,
+        "d17": 0,
+        "d18": 0,
+        "d19": 0,
+        "d20": 0,
+        "d21": 0,
+        "d22": 1,
+        "d23": 0,
+        "d24": 0,
+        "d25": 0,
+        "d26": 0,
+        "d27": 0,
+        "d28": 0,
+        "d29": 0,
+        "d30": 0,
+        "d31": 0,
+        "d32": 0
+      },
+      "excluded_ids": [],
+      "rationale": "合成标签草案：2=主要任务与岗位方向匹配，1=相邻方向或资历/技术栈部分匹配，0=不相关；需逐候选人工复核，勿作为真实招聘结论。",
+      "human_reviewed": false
+    },
+    {
+      "id": "q17",
+      "source": "synthetic://pilot-v1/q17",
+      "text": "寻找React流式聊天页面岗位；期望工作涉及React、TypeScript、SSE，业务领域为AI Application。",
+      "jd": {
+        "role_title": "React流式聊天页面",
+        "company": null,
+        "seniority": "intern",
+        "hard_skills": [
+          "React",
+          "TypeScript",
+          "SSE"
+        ],
+        "domain": "AI Application",
+        "key_responsibilities": [
+          "参与React流式聊天页面相关开发和验证"
+        ]
+      },
+      "split": "test",
+      "relevance": {
+        "d01": 0,
+        "d02": 0,
+        "d03": 0,
+        "d04": 0,
+        "d05": 0,
+        "d06": 0,
+        "d07": 0,
+        "d08": 2,
+        "d09": 0,
+        "d10": 0,
+        "d11": 0,
+        "d12": 0,
+        "d13": 0,
+        "d14": 0,
+        "d15": 0,
+        "d16": 0,
+        "d17": 0,
+        "d18": 0,
+        "d19": 0,
+        "d20": 0,
+        "d21": 0,
+        "d22": 1,
+        "d23": 0,
+        "d24": 0,
+        "d25": 0,
+        "d26": 0,
+        "d27": 0,
+        "d28": 0,
+        "d29": 0,
+        "d30": 0,
+        "d31": 2,
+        "d32": 0
+      },
+      "excluded_ids": [],
+      "rationale": "合成标签草案：2=主要任务与岗位方向匹配，1=相邻方向或资历/技术栈部分匹配，0=不相关；需逐候选人工复核，勿作为真实招聘结论。",
+      "human_reviewed": false
+    },
+    {
+      "id": "q18",
+      "source": "synthetic://pilot-v1/q18",
+      "text": "寻找订单业务后端实习岗位；期望工作涉及Java、Spring Boot、Redis，业务领域为E-commerce。",
+      "jd": {
+        "role_title": "订单业务后端实习",
+        "company": null,
+        "seniority": "intern",
+        "hard_skills": [
+          "Java",
+          "Spring Boot",
+          "Redis"
+        ],
+        "domain": "E-commerce",
+        "key_responsibilities": [
+          "参与订单业务后端实习相关开发和验证"
+        ]
+      },
+      "split": "test",
+      "relevance": {
+        "d01": 0,
+        "d02": 0,
+        "d03": 0,
+        "d04": 0,
+        "d05": 0,
+        "d06": 1,
+        "d07": 2,
+        "d08": 0,
+        "d09": 0,
+        "d10": 0,
+        "d11": 0,
+        "d12": 0,
+        "d13": 0,
+        "d14": 0,
+        "d15": 0,
+        "d16": 0,
+        "d17": 0,
+        "d18": 0,
+        "d19": 0,
+        "d20": 0,
+        "d21": 0,
+        "d22": 0,
+        "d23": 0,
+        "d24": 0,
+        "d25": 0,
+        "d26": 0,
+        "d27": 0,
+        "d28": 0,
+        "d29": 1,
+        "d30": 0,
+        "d31": 0,
+        "d32": 0
+      },
+      "excluded_ids": [],
+      "rationale": "合成标签草案：2=主要任务与岗位方向匹配，1=相邻方向或资历/技术栈部分匹配，0=不相关；需逐候选人工复核，勿作为真实招聘结论。",
+      "human_reviewed": false
+    },
+    {
+      "id": "q19",
+      "source": "synthetic://pilot-v1/q19",
+      "text": "寻找服务端RPC开发实习岗位；期望工作涉及Go、gRPC、MySQL，业务领域为Backend。",
+      "jd": {
+        "role_title": "服务端RPC开发实习",
+        "company": null,
+        "seniority": "intern",
+        "hard_skills": [
+          "Go",
+          "gRPC",
+          "MySQL"
+        ],
+        "domain": "Backend",
+        "key_responsibilities": [
+          "参与服务端RPC开发实习相关开发和验证"
+        ]
+      },
+      "split": "test",
+      "relevance": {
+        "d01": 0,
+        "d02": 0,
+        "d03": 0,
+        "d04": 0,
+        "d05": 0,
+        "d06": 0,
+        "d07": 0,
+        "d08": 0,
+        "d09": 0,
+        "d10": 0,
+        "d11": 0,
+        "d12": 0,
+        "d13": 0,
+        "d14": 1,
+        "d15": 0,
+        "d16": 0,
+        "d17": 0,
+        "d18": 0,
+        "d19": 2,
+        "d20": 0,
+        "d21": 0,
+        "d22": 0,
+        "d23": 0,
+        "d24": 0,
+        "d25": 0,
+        "d26": 0,
+        "d27": 0,
+        "d28": 0,
+        "d29": 0,
+        "d30": 0,
+        "d31": 0,
+        "d32": 0
+      },
+      "excluded_ids": [],
+      "rationale": "合成标签草案：2=主要任务与岗位方向匹配，1=相邻方向或资历/技术栈部分匹配，0=不相关；需逐候选人工复核，勿作为真实招聘结论。",
+      "human_reviewed": false
+    },
+    {
+      "id": "q20",
+      "source": "synthetic://pilot-v1/q20",
+      "text": "寻找网络库开发实习岗位；期望工作涉及C/C++、Linux、网络编程，业务领域为Systems。",
+      "jd": {
+        "role_title": "网络库开发实习",
+        "company": null,
+        "seniority": "intern",
+        "hard_skills": [
+          "C/C++",
+          "Linux",
+          "网络编程"
+        ],
+        "domain": "Systems",
+        "key_responsibilities": [
+          "参与网络库开发实习相关开发和验证"
+        ]
+      },
+      "split": "test",
+      "relevance": {
+        "d01": 0,
+        "d02": 0,
+        "d03": 0,
+        "d04": 0,
+        "d05": 0,
+        "d06": 0,
+        "d07": 0,
+        "d08": 0,
+        "d09": 0,
+        "d10": 0,
+        "d11": 0,
+        "d12": 0,
+        "d13": 0,
+        "d14": 0,
+        "d15": 0,
+        "d16": 0,
+        "d17": 0,
+        "d18": 0,
+        "d19": 0,
+        "d20": 2,
+        "d21": 0,
+        "d22": 0,
+        "d23": 0,
+        "d24": 0,
+        "d25": 0,
+        "d26": 0,
+        "d27": 0,
+        "d28": 1,
+        "d29": 0,
+        "d30": 0,
+        "d31": 0,
+        "d32": 0
+      },
+      "excluded_ids": [],
+      "rationale": "合成标签草案：2=主要任务与岗位方向匹配，1=相邻方向或资历/技术栈部分匹配，0=不相关；需逐候选人工复核，勿作为真实招聘结论。",
+      "human_reviewed": false
+    },
+    {
+      "id": "q21",
+      "source": "synthetic://pilot-v1/q21",
+      "text": "寻找大模型参数高效训练岗位；期望工作涉及PyTorch、LoRA、Python，业务领域为NLP。",
+      "jd": {
+        "role_title": "大模型参数高效训练",
+        "company": null,
+        "seniority": "intern",
+        "hard_skills": [
+          "PyTorch",
+          "LoRA",
+          "Python"
+        ],
+        "domain": "NLP",
+        "key_responsibilities": [
+          "参与大模型参数高效训练相关开发和验证"
+        ]
+      },
+      "split": "test",
+      "relevance": {
+        "d01": 0,
+        "d02": 0,
+        "d03": 0,
+        "d04": 0,
+        "d05": 0,
+        "d06": 0,
+        "d07": 0,
+        "d08": 0,
+        "d09": 0,
+        "d10": 0,
+        "d11": 0,
+        "d12": 1,
+        "d13": 0,
+        "d14": 0,
+        "d15": 0,
+        "d16": 0,
+        "d17": 0,
+        "d18": 2,
+        "d19": 0,
+        "d20": 0,
+        "d21": 0,
+        "d22": 0,
+        "d23": 0,
+        "d24": 0,
+        "d25": 0,
+        "d26": 0,
+        "d27": 0,
+        "d28": 0,
+        "d29": 0,
+        "d30": 0,
+        "d31": 0,
+        "d32": 0
+      },
+      "excluded_ids": [],
+      "rationale": "合成标签草案：2=主要任务与岗位方向匹配，1=相邻方向或资历/技术栈部分匹配，0=不相关；需逐候选人工复核，勿作为真实招聘结论。",
+      "human_reviewed": false
+    },
+    {
+      "id": "q22",
+      "source": "synthetic://pilot-v1/q22",
+      "text": "寻找图像检测算法助理岗位；期望工作涉及Python、OpenCV、深度学习，业务领域为Computer Vision。",
+      "jd": {
+        "role_title": "图像检测算法助理",
+        "company": null,
+        "seniority": "intern",
+        "hard_skills": [
+          "Python",
+          "OpenCV",
+          "深度学习"
+        ],
+        "domain": "Computer Vision",
+        "key_responsibilities": [
+          "参与图像检测算法助理相关开发和验证"
+        ]
+      },
+      "split": "test",
+      "relevance": {
+        "d01": 0,
+        "d02": 0,
+        "d03": 0,
+        "d04": 0,
+        "d05": 0,
+        "d06": 0,
+        "d07": 0,
+        "d08": 0,
+        "d09": 0,
+        "d10": 0,
+        "d11": 0,
+        "d12": 1,
+        "d13": 0,
+        "d14": 0,
+        "d15": 0,
+        "d16": 0,
+        "d17": 2,
+        "d18": 0,
+        "d19": 0,
+        "d20": 0,
+        "d21": 0,
+        "d22": 0,
+        "d23": 0,
+        "d24": 0,
+        "d25": 0,
+        "d26": 0,
+        "d27": 0,
+        "d28": 0,
+        "d29": 0,
+        "d30": 0,
+        "d31": 0,
+        "d32": 0
+      },
+      "excluded_ids": [],
+      "rationale": "合成标签草案：2=主要任务与岗位方向匹配，1=相邻方向或资历/技术栈部分匹配，0=不相关；需逐候选人工复核，勿作为真实招聘结论。",
+      "human_reviewed": false
+    },
+    {
+      "id": "q23",
+      "source": "synthetic://pilot-v1/q23",
+      "text": "寻找离线数据管线开发岗位；期望工作涉及Python、Spark、SQL，业务领域为Data Engineering。",
+      "jd": {
+        "role_title": "离线数据管线开发",
+        "company": null,
+        "seniority": "intern",
+        "hard_skills": [
+          "Python",
+          "Spark",
+          "SQL"
+        ],
+        "domain": "Data Engineering",
+        "key_responsibilities": [
+          "参与离线数据管线开发相关开发和验证"
+        ]
+      },
+      "split": "test",
+      "relevance": {
+        "d01": 0,
+        "d02": 0,
+        "d03": 0,
+        "d04": 0,
+        "d05": 0,
+        "d06": 0,
+        "d07": 0,
+        "d08": 0,
+        "d09": 0,
+        "d10": 0,
+        "d11": 0,
+        "d12": 0,
+        "d13": 0,
+        "d14": 0,
+        "d15": 2,
+        "d16": 1,
+        "d17": 0,
+        "d18": 0,
+        "d19": 0,
+        "d20": 0,
+        "d21": 0,
+        "d22": 0,
+        "d23": 0,
+        "d24": 0,
+        "d25": 0,
+        "d26": 0,
+        "d27": 0,
+        "d28": 0,
+        "d29": 0,
+        "d30": 0,
+        "d31": 0,
+        "d32": 0
+      },
+      "excluded_ids": [],
+      "rationale": "合成标签草案：2=主要任务与岗位方向匹配，1=相邻方向或资历/技术栈部分匹配，0=不相关；需逐候选人工复核，勿作为真实招聘结论。",
+      "human_reviewed": false
+    },
+    {
+      "id": "q24",
+      "source": "synthetic://pilot-v1/q24",
+      "text": "寻找运营数据分析助理岗位；期望工作涉及SQL、pandas、报表，业务领域为Analytics。",
+      "jd": {
+        "role_title": "运营数据分析助理",
+        "company": null,
+        "seniority": "intern",
+        "hard_skills": [
+          "SQL",
+          "pandas",
+          "报表"
+        ],
+        "domain": "Analytics",
+        "key_responsibilities": [
+          "参与运营数据分析助理相关开发和验证"
+        ]
+      },
+      "split": "test",
+      "relevance": {
+        "d01": 0,
+        "d02": 0,
+        "d03": 0,
+        "d04": 0,
+        "d05": 0,
+        "d06": 0,
+        "d07": 0,
+        "d08": 0,
+        "d09": 0,
+        "d10": 0,
+        "d11": 0,
+        "d12": 0,
+        "d13": 0,
+        "d14": 0,
+        "d15": 1,
+        "d16": 2,
+        "d17": 0,
+        "d18": 0,
+        "d19": 0,
+        "d20": 0,
+        "d21": 0,
+        "d22": 0,
+        "d23": 0,
+        "d24": 0,
+        "d25": 0,
+        "d26": 0,
+        "d27": 0,
+        "d28": 0,
+        "d29": 0,
+        "d30": 0,
+        "d31": 0,
+        "d32": 0
+      },
+      "excluded_ids": [],
+      "rationale": "合成标签草案：2=主要任务与岗位方向匹配，1=相邻方向或资历/技术栈部分匹配，0=不相关；需逐候选人工复核，勿作为真实招聘结论。",
+      "human_reviewed": false
+    },
+    {
+      "id": "q25",
+      "source": "synthetic://pilot-v1/q25",
+      "text": "寻找Python Agent Engineering Intern岗位；期望工作涉及Python、LangChain/LangGraph、RAG，业务领域为AI Application。",
+      "jd": {
+        "role_title": "Python Agent Engineering Intern",
+        "company": null,
+        "seniority": "intern",
+        "hard_skills": [
+          "Python",
+          "LangChain/LangGraph",
+          "RAG"
+        ],
+        "domain": "AI Application",
+        "key_responsibilities": [
+          "参与Python Agent Engineering Intern相关开发和验证"
+        ]
+      },
+      "split": "test",
+      "relevance": {
+        "d01": 2,
+        "d02": 2,
+        "d03": 0,
+        "d04": 0,
+        "d05": 0,
+        "d06": 0,
+        "d07": 0,
+        "d08": 0,
+        "d09": 0,
+        "d10": 0,
+        "d11": 1,
+        "d12": 0,
+        "d13": 0,
+        "d14": 0,
+        "d15": 0,
+        "d16": 0,
+        "d17": 0,
+        "d18": 0,
+        "d19": 0,
+        "d20": 0,
+        "d21": 0,
+        "d22": 0,
+        "d23": 1,
+        "d24": 0,
+        "d25": 1,
+        "d26": 0,
+        "d27": 0,
+        "d28": 0,
+        "d29": 0,
+        "d30": 0,
+        "d31": 0,
+        "d32": 0
+      },
+      "excluded_ids": [],
+      "rationale": "合成标签草案：2=主要任务与岗位方向匹配，1=相邻方向或资历/技术栈部分匹配，0=不相关；需逐候选人工复核，勿作为真实招聘结论。",
+      "human_reviewed": false
+    },
+    {
+      "id": "q26",
+      "source": "synthetic://pilot-v1/q26",
+      "text": "寻找Python Server Engineering Intern岗位；期望工作涉及Python、asynchronous API、FastAPI，业务领域为Backend。",
+      "jd": {
+        "role_title": "Python Server Engineering Intern",
+        "company": null,
+        "seniority": "intern",
+        "hard_skills": [
+          "Python",
+          "asynchronous API",
+          "FastAPI"
+        ],
+        "domain": "Backend",
+        "key_responsibilities": [
+          "参与Python Server Engineering Intern相关开发和验证"
+        ]
+      },
+      "split": "test",
+      "relevance": {
+        "d01": 0,
+        "d02": 0,
+        "d03": 0,
+        "d04": 0,
+        "d05": 2,
+        "d06": 0,
+        "d07": 0,
+        "d08": 0,
+        "d09": 0,
+        "d10": 0,
+        "d11": 0,
+        "d12": 0,
+        "d13": 0,
+        "d14": 0,
+        "d15": 0,
+        "d16": 0,
+        "d17": 0,
+        "d18": 0,
+        "d19": 0,
+        "d20": 0,
+        "d21": 0,
+        "d22": 1,
+        "d23": 0,
+        "d24": 0,
+        "d25": 0,
+        "d26": 0,
+        "d27": 0,
+        "d28": 0,
+        "d29": 1,
+        "d30": 2,
+        "d31": 0,
+        "d32": 0
+      },
+      "excluded_ids": [],
+      "rationale": "合成标签草案：2=主要任务与岗位方向匹配，1=相邻方向或资历/技术栈部分匹配，0=不相关；需逐候选人工复核，勿作为真实招聘结论。",
+      "human_reviewed": false
+    },
+    {
+      "id": "q27",
+      "source": "synthetic://pilot-v1/q27",
+      "text": "寻找Agent方向运营助理岗位；期望工作涉及Prompt、Excel、用户反馈，业务领域为Operations。",
+      "jd": {
+        "role_title": "Agent方向运营助理",
+        "company": null,
+        "seniority": "intern",
+        "hard_skills": [
+          "Prompt",
+          "Excel",
+          "用户反馈"
+        ],
+        "domain": "Operations",
+        "key_responsibilities": [
+          "参与Agent方向运营助理相关开发和验证"
+        ]
+      },
+      "split": "test",
+      "relevance": {
+        "d01": 0,
+        "d02": 0,
+        "d03": 0,
+        "d04": 0,
+        "d05": 0,
+        "d06": 0,
+        "d07": 0,
+        "d08": 0,
+        "d09": 0,
+        "d10": 0,
+        "d11": 0,
+        "d12": 0,
+        "d13": 0,
+        "d14": 0,
+        "d15": 0,
+        "d16": 1,
+        "d17": 0,
+        "d18": 0,
+        "d19": 0,
+        "d20": 0,
+        "d21": 0,
+        "d22": 0,
+        "d23": 0,
+        "d24": 0,
+        "d25": 0,
+        "d26": 0,
+        "d27": 2,
+        "d28": 0,
+        "d29": 0,
+        "d30": 0,
+        "d31": 0,
+        "d32": 0
+      },
+      "excluded_ids": [],
+      "rationale": "合成标签草案：2=主要任务与岗位方向匹配，1=相邻方向或资历/技术栈部分匹配，0=不相关；需逐候选人工复核，勿作为真实招聘结论。",
+      "human_reviewed": false
+    },
+    {
+      "id": "q28",
+      "source": "synthetic://pilot-v1/q28",
+      "text": "寻找嵌入式电路设计实习岗位；期望工作涉及Verilog、FPGA、PCB，业务领域为Hardware。",
+      "jd": {
+        "role_title": "嵌入式电路设计实习",
+        "company": null,
+        "seniority": "intern",
+        "hard_skills": [
+          "Verilog",
+          "FPGA",
+          "PCB"
+        ],
+        "domain": "Hardware",
+        "key_responsibilities": [
+          "参与嵌入式电路设计实习相关开发和验证"
+        ]
+      },
+      "split": "test",
+      "relevance": {
+        "d01": 0,
+        "d02": 0,
+        "d03": 0,
+        "d04": 0,
+        "d05": 0,
+        "d06": 0,
+        "d07": 0,
+        "d08": 0,
+        "d09": 0,
+        "d10": 0,
+        "d11": 0,
+        "d12": 0,
+        "d13": 0,
+        "d14": 0,
+        "d15": 0,
+        "d16": 0,
+        "d17": 0,
+        "d18": 0,
+        "d19": 0,
+        "d20": 0,
+        "d21": 0,
+        "d22": 0,
+        "d23": 0,
+        "d24": 0,
+        "d25": 0,
+        "d26": 0,
+        "d27": 0,
+        "d28": 0,
+        "d29": 0,
+        "d30": 0,
+        "d31": 0,
+        "d32": 0
+      },
+      "excluded_ids": [],
+      "rationale": "合成标签草案：2=主要任务与岗位方向匹配，1=相邻方向或资历/技术栈部分匹配，0=不相关；需逐候选人工复核，勿作为真实招聘结论。",
+      "human_reviewed": false
+    },
+    {
+      "id": "q29",
+      "source": "synthetic://pilot-v1/q29",
+      "text": "寻找生物实验助理岗位；期望工作涉及细胞培养、PCR、实验记录，业务领域为Biology。",
+      "jd": {
+        "role_title": "生物实验助理",
+        "company": null,
+        "seniority": "intern",
+        "hard_skills": [
+          "细胞培养",
+          "PCR",
+          "实验记录"
+        ],
+        "domain": "Biology",
+        "key_responsibilities": [
+          "参与生物实验助理相关开发和验证"
+        ]
+      },
+      "split": "test",
+      "relevance": {
+        "d01": 0,
+        "d02": 0,
+        "d03": 0,
+        "d04": 0,
+        "d05": 0,
+        "d06": 0,
+        "d07": 0,
+        "d08": 0,
+        "d09": 0,
+        "d10": 0,
+        "d11": 0,
+        "d12": 0,
+        "d13": 0,
+        "d14": 0,
+        "d15": 0,
+        "d16": 0,
+        "d17": 0,
+        "d18": 0,
+        "d19": 0,
+        "d20": 0,
+        "d21": 0,
+        "d22": 0,
+        "d23": 0,
+        "d24": 0,
+        "d25": 0,
+        "d26": 0,
+        "d27": 0,
+        "d28": 0,
+        "d29": 0,
+        "d30": 0,
+        "d31": 0,
+        "d32": 0
+      },
+      "excluded_ids": [],
+      "rationale": "合成标签草案：2=主要任务与岗位方向匹配，1=相邻方向或资历/技术栈部分匹配，0=不相关；需逐候选人工复核，勿作为真实招聘结论。",
+      "human_reviewed": false
+    },
+    {
+      "id": "q30",
+      "source": "synthetic://pilot-v1/q30",
+      "text": "寻找资深智能体系统设计岗位；期望工作涉及LangGraph、RAG、Python、系统架构，业务领域为AI Application。",
+      "jd": {
+        "role_title": "资深智能体系统设计",
+        "company": null,
+        "seniority": "senior",
+        "hard_skills": [
+          "LangGraph",
+          "RAG",
+          "Python",
+          "系统架构"
+        ],
+        "domain": "AI Application",
+        "key_responsibilities": [
+          "参与资深智能体系统设计相关开发和验证"
+        ]
+      },
+      "split": "test",
+      "relevance": {
+        "d01": 1,
+        "d02": 0,
+        "d03": 0,
+        "d04": 0,
+        "d05": 0,
+        "d06": 0,
+        "d07": 0,
+        "d08": 0,
+        "d09": 0,
+        "d10": 0,
+        "d11": 1,
+        "d12": 0,
+        "d13": 0,
+        "d14": 0,
+        "d15": 0,
+        "d16": 0,
+        "d17": 0,
+        "d18": 0,
+        "d19": 0,
+        "d20": 0,
+        "d21": 0,
+        "d22": 0,
+        "d23": 1,
+        "d24": 0,
+        "d25": 2,
+        "d26": 0,
+        "d27": 0,
+        "d28": 0,
+        "d29": 0,
+        "d30": 0,
+        "d31": 0,
+        "d32": 0
+      },
+      "excluded_ids": [],
+      "rationale": "合成标签草案：2=主要任务与岗位方向匹配，1=相邻方向或资历/技术栈部分匹配，0=不相关；需逐候选人工复核，勿作为真实招聘结论。",
+      "human_reviewed": false
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+.venv/
+venv/
+ENV/
+env/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Testing & Debug files
+test_*.py
+debug_*.py
+test_*.json
+test_*.xlsx
+# 回归测试属于项目代码，不能被上面的临时文件规则忽略。
+!tests/test_*.py
+*.xlsx
+~$*.xlsx
+测试记录.xlsx
+
+# Data & Model files
+data/
+models/
+*.db
+*.sqlite
+*.faiss
+bm25_index.pkl
+
+# Environment
+.env
+.env.local
+.env.*
+!.env.example
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project specific
+resume_data/
+output/
+temp/
+
+# Private local snapshots (may contain .env) and evaluation outputs
+backups/
+evaluation/local/runs/
+evaluation/local/
+evaluation/private/
+evaluation/runs/
+
+# Local resume review exports and desktop extraction artifacts
+resume_desktop_*
+docs/
+
+# Personal notes are kept outside the public source release
+BAT_*.md
+今晚1小时八股速通.md
+代码细节深度解析.md
+项目核心原理详解.md
+项目文件结构图.md
+项目面试深挖指南.md
+项目系统理解与面试作战指南.md
+简历指标依据_20260920/
+简历指标依据/
+
+# Extracted resumes and local rendering artifacts
+.resume_*/
+.resume_render/
+
+# Editor metadata and local artwork
+.claude/
+
+# Experimental evaluation runners may reference local/private datasets
+scripts/audit_jd_v2.py
+scripts/compare_rank_weights.py
+scripts/full_jd_benchmark.py
+scripts/report_full_jd.py
+scripts/run_jd_v3.py
+scripts/run_jd_v4.py
+scripts/run_jd_v5.py
+scripts/standalone_jd_comparison.py
+.public_release/
+public-release/
+public-release-*/
+public-release-*.zip
+
+# Test and linter caches
+.pytest_cache/
+.ruff_cache/
