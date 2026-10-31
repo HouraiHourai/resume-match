@@ -23,6 +23,9 @@ async def run(jd_input: str, resume_pdf: Path) -> dict:
 
     return {
         "jd": final_state["jd_structured"].model_dump() if final_state.get("jd_structured") else None,
+        "jd_quality": final_state["jd_quality"].model_dump() if final_state.get("jd_quality") else None,
+        "stop_reason": final_state.get("stop_reason"),
+        "rewrite_skipped_reason": final_state.get("rewrite_skipped_reason"),
         "gap": final_state["gap_analysis"].model_dump() if final_state.get("gap_analysis") else None,
         "advice": final_state["advice"].model_dump() if final_state.get("advice") else None,
         "errors": final_state.get("errors", []),
@@ -32,6 +35,7 @@ async def run(jd_input: str, resume_pdf: Path) -> dict:
 def render_markdown(report: dict) -> str:
     """把报告 dict 渲染成人类可读的 Markdown。"""
     jd = report.get("jd")
+    quality = report.get("jd_quality")
     gap = report.get("gap")
     advice = report.get("advice")
     lines: list[str] = []
@@ -61,6 +65,29 @@ def render_markdown(report: dict) -> str:
         if jd.get("nice_to_have"):
             lines.append(f"- **加分项**: {', '.join(jd['nice_to_have'])}")
         lines.append("")
+
+    if quality:
+        labels = {"high": "较高，可继续分析", "low": "较低，已跳过改写", "uncertain": "待核实，已跳过改写"}
+        level = quality.get("level")
+        lines += ["## 岗位质量评估", "", f"**结论: {labels.get(level, level)}**", ""]
+        lines += ["基于 JD 文本的初步判断；招聘方身份、岗位真实性和待遇尚未外部核验。", ""]
+        if quality.get("reason"):
+            lines += [quality["reason"], ""]
+        for key, title in (("positive_signals", "积极信号"), ("risk_signals", "风险信号")):
+            if quality.get(key):
+                lines += [f"### {title}", ""]
+                for signal in quality[key]:
+                    lines.append(f"- {signal['point']}；依据：{signal['evidence']}")
+                lines.append("")
+        if quality.get("verification_questions"):
+            lines += ["### 建议核实", ""]
+            lines += [f"- {question}" for question in quality["verification_questions"]]
+            lines.append("")
+
+    if report.get("stop_reason"):
+        lines += ["## 流程结束原因", "", report["stop_reason"], ""]
+    if report.get("rewrite_skipped_reason"):
+        lines += ["## 简历改写已跳过", "", report["rewrite_skipped_reason"], ""]
 
     if gap:
         lines += ["## 匹配度分析", "", f"**总体匹配度: {gap.get('overall_match_score')}/100**", ""]

@@ -83,8 +83,50 @@
           <p id="input-error" class="input-error" hidden></p>
         </section>
 
+        <!-- 历史记录对应的输入资料 -->
+        <section class="card materials-card" id="analysis-materials" aria-labelledby="materials-title" hidden>
+          <div class="materials-header">
+            <h3 id="materials-title">本次分析资料</h3>
+            <time id="materials-created-at" hidden></time>
+          </div>
+          <dl class="materials-meta">
+            <div>
+              <dt>JD 来源</dt>
+              <dd id="materials-source"></dd>
+            </div>
+          </dl>
+          <div id="materials-url-section" hidden>
+            <p id="materials-url-text" class="materials-url"></p>
+            <div class="materials-actions">
+              <a id="materials-open-url" class="materials-action" target="_blank" rel="noopener noreferrer">打开原网页</a>
+              <button id="materials-copy-url" class="materials-action" type="button">复制链接</button>
+            </div>
+            <p class="materials-note">该记录未保存分析时的 JD 正文，原网页内容可能已发生变化。</p>
+          </div>
+          <details id="materials-jd-details" hidden>
+            <summary>查看 JD 原文</summary>
+            <div class="materials-actions">
+              <button id="materials-copy-jd" class="materials-action" type="button">复制全文</button>
+            </div>
+            <pre id="materials-jd-text" tabindex="0" aria-label="本次分析使用的 JD 文本"></pre>
+          </details>
+          <p id="materials-missing-jd" class="materials-note" hidden>该记录未保存 JD 输入。</p>
+          <p id="materials-copy-status" class="materials-note" role="status" hidden></p>
+        </section>
+
         <!-- 结果区 -->
         <section class="card result-card" id="result-panel" hidden>
+          <div class="result-block" id="quality-block" hidden>
+            <h3><span id="quality-title">岗位质量</span> <span class="badge" id="quality-label"></span></h3>
+            <p id="quality-reason"></p>
+            <p class="quality-note">基于 JD 文本的初步评估，招聘方身份、岗位真实性和待遇尚未外部核验。</p>
+            <ul id="quality-signals" class="plain-list"></ul>
+            <div id="quality-questions-block" hidden>
+              <h4>建议向招聘方核实</h4>
+              <ul id="quality-questions" class="plain-list"></ul>
+            </div>
+          </div>
+          <p id="stop-reason" role="status" hidden></p>
           <div class="result-head">
             <div class="score-ring" id="score-ring">
               <div class="score-inner">
@@ -109,7 +151,7 @@
             <div class="skills" id="skills"></div>
           </div>
           <div class="result-block" id="company-risk-block" hidden>
-            <h3>公司风险评估</h3>
+            <h3>公司背景线索</h3>
             <div id="company-risk-content"></div>
           </div>
           <div class="result-block">

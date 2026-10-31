@@ -4,7 +4,7 @@
 - AgentState 用 TypedDict: 它是节点之间传递的"数据黑板", 每个节点只部分更新, 运行时就是普通 dict, 轻量、灵活
 - LLM 产出的字段(JDRequirements / GapAnalysis / ResumeAdvice)用 Pydantic BaseModel: 需要运行时强校验(反幻觉), .with_structured_output() 也依赖 Pydantic schema
 """
-from typing import Optional, Annotated, Any
+from typing import Optional, Annotated, Any, Literal
 from operator import add
 
 from typing_extensions import TypedDict
@@ -43,6 +43,21 @@ class JDRequirements(BaseModel):
     key_responsibilities: list[str] = Field(
         description="核心工作职责列表, 5-10 条"
     )
+
+
+class JDQualitySignal(BaseModel):
+    """岗位质量判断及其在 JD 中的原文依据。"""
+    point: str
+    evidence: str
+
+
+class JDQuality(BaseModel):
+    """基于 JD 文本的初步评估，不代表外部真实性核验。"""
+    level: Literal["high", "low", "uncertain"]
+    reason: str = Field(min_length=1)
+    positive_signals: list[JDQualitySignal] = Field(default_factory=list)
+    risk_signals: list[JDQualitySignal] = Field(default_factory=list)
+    verification_questions: list[str] = Field(default_factory=list)
 
 
 class SkillMatch(BaseModel):
@@ -118,21 +133,25 @@ class SimilarHistory(BaseModel):
     created_at: str
 
 
-class ResumeAdvice(BaseModel):
-    """给用户的最终建议。"""
+class ApplicationAdvice(BaseModel):
+    """投递与岗位准备建议，不含简历改写。"""
     should_apply: str = Field(
         description="'strongly_recommend' / 'worth_trying' / 'stretch' / 'not_recommended'"
     )
     should_apply_reason: str = Field(description="为什么建议这样, 2-3 句话")
-    bullet_rewrites: list[BulletRewrite] = Field(
-        description="针对当前 JD 的简历 bullet 改写建议, 3-5 条"
-    )
     interview_prep_focus: list[str] = Field(
         description="岗位准备重点的技术点, 3-5 条"
     )
     questions_to_ask_interviewer: list[str] = Field(
         default_factory=list,
         description="可询问招聘方的问题, 2-3 条"
+    )
+
+
+class ResumeAdvice(ApplicationAdvice):
+    """对外建议结果；跳过改写时 bullet_rewrites 为空。"""
+    bullet_rewrites: list[BulletRewrite] = Field(
+        description="针对当前 JD 的简历 bullet 改写建议；允许改写时 3-5 条，跳过时为空"
     )
 
 
@@ -153,6 +172,9 @@ class AgentState(TypedDict, total=False):
 
     # 结构化产出
     jd_structured: JDRequirements
+    jd_quality: Optional[JDQuality]
+    stop_reason: Optional[str]
+    rewrite_skipped_reason: Optional[str]
     gap_analysis: GapAnalysis
     advice: ResumeAdvice
 

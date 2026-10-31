@@ -219,6 +219,7 @@ body {
 
 .stepper.completed .stage-text {
   color: var(--success);
+  animation: none;
 }
 
 .stepper.error .loading-spinner {
@@ -305,8 +306,35 @@ input#company-name::placeholder { color: var(--text-secondary); }
 
 .input-error { color: var(--error); font-size: 13px; margin: 16px 0 0; }
 
+/* ===== 历史分析资料 ===== */
+.materials-header { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+.materials-header h3 { margin: 0; }
+.materials-header time { color: var(--text-secondary); font-size: 12px; }
+.materials-meta { margin: 16px 0 0; font-size: 14px; }
+.materials-meta > div { display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: 12px; margin-top: 12px; }
+.materials-meta dt { color: var(--text-secondary); }
+.materials-meta dd { margin: 0; overflow-wrap: anywhere; }
+.materials-note { margin: 8px 0 0; font-size: 13px; line-height: 1.65; color: var(--text-secondary); }
+.materials-url { padding: 12px; margin: 16px 0 12px; border-radius: var(--radius-btn); background: var(--bg-secondary); overflow-wrap: anywhere; font-size: 14px; }
+.materials-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.materials-action {
+  display: inline-block; padding: 6px 12px; border: 1px solid var(--border);
+  border-radius: var(--radius-btn); background: var(--bg-primary); color: var(--accent);
+  font: inherit; font-size: 13px; line-height: 1.6; text-decoration: none; cursor: pointer;
+}
+.materials-action:hover { background: var(--accent-soft); border-color: var(--accent); }
+.materials-action:focus-visible, #materials-jd-details summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+#materials-jd-details { margin-top: 16px; border-top: 1px solid var(--border); }
+#materials-jd-details summary { padding: 12px 0; cursor: pointer; color: var(--accent); font-size: 14px; }
+#materials-jd-text {
+  margin: 12px 0 0; padding: 16px; max-height: 360px; overflow: auto;
+  white-space: pre-wrap; overflow-wrap: anywhere; font: inherit; font-size: 14px;
+  background: var(--bg-secondary); border-radius: var(--radius-btn);
+}
+
 /* ===== 结果区 ===== */
 .result-head { display: flex; align-items: center; gap: 24px; margin-bottom: 8px; }
+.result-head[hidden] { display: none; }
 .score-ring {
   width: 96px; height: 96px; border-radius: 50%; flex-shrink: 0;
   display: flex; align-items: center; justify-content: center;
@@ -415,21 +443,26 @@ input#company-name::placeholder { color: var(--text-secondary); }
 /* ===== Company Risk ===== */
 .company-risk {
   padding: 16px;
-  border-radius: var(--radius);
+  border-radius: var(--radius-card);
   border: 2px solid;
+  overflow-wrap: anywhere;
 }
 .company-risk.low { border-color: var(--success); background: rgba(34, 197, 94, 0.05); }
 .company-risk.medium { border-color: var(--warning); background: rgba(251, 191, 36, 0.05); }
 .company-risk.high { border-color: var(--error); background: rgba(239, 68, 68, 0.05); }
+.company-risk.unavailable { border-color: var(--border); background: var(--bg-secondary); overflow-wrap: anywhere; }
 
 .risk-header {
   display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 12px;
   padding-bottom: 12px;
   border-bottom: 1px solid var(--border);
 }
+.company-name { min-width: 0; font-size: 16px; font-weight: 600; }
 .risk-badge {
   display: inline-flex;
   align-items: center;
@@ -507,6 +540,18 @@ input#company-name::placeholder { color: var(--text-secondary); }
 .site-footer a { color: var(--accent); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
 .dot-sep { opacity: .5; }
 
+#quality-block p { line-height: 1.65; }
+#quality-block { margin-top: 0; }
+#quality-label { margin-left: 8px; color: var(--text-primary); background: var(--bg-secondary); }
+#quality-label[hidden] { display: none; }
+#quality-label[data-level="high"] { background: var(--success-soft); }
+#quality-label[data-level="low"] { background: var(--error-soft); }
+#quality-label[data-level="uncertain"] { background: var(--warning-soft); }
+.quality-note { font-size: 13px; color: var(--text-secondary); }
+#quality-signals li { overflow-wrap: anywhere; }
+#quality-reason { overflow-wrap: anywhere; }
+#stop-reason { line-height: 1.65; padding: 12px; background: var(--bg-secondary); border-radius: 8px; }
+
 /* ===== Responsive ===== */
 @media (max-width: 900px) {
   .hamburger { display: flex; }
@@ -526,6 +571,7 @@ input#company-name::placeholder { color: var(--text-secondary); }
   .site-header, .stepper, .container, .site-footer { padding-left: 16px; padding-right: 16px; }
   .container { padding-top: 16px; gap: 16px; }
   .card { padding: 16px; }
+  .materials-meta > div { grid-template-columns: minmax(0, 1fr); gap: 4px; }
   .result-head { gap: 16px; }
   .step-label { font-size: 11px; }
   .skill-row { flex-wrap: wrap; }

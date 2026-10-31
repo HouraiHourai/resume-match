@@ -1,4 +1,4 @@
-"""Tool 基类和输入输出定义。"""
+"""工具接口与输入输出协议；本模块本身不是 Agent 工具。"""
 from abc import ABC, abstractmethod
 from typing import Any, Optional
 from pydantic import BaseModel

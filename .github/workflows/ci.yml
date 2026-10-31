@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  offline-checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      RUN_E2E: "0"
+      ANONYMIZED_TELEMETRY: "False"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+          python-version: "3.14"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install locked dependencies
+        run: uv sync --locked --extra dev
+      - name: Python lint
+        run: uv run --no-sync ruff check src tests scripts
+      - name: JavaScript syntax
+        run: node --check src/resume_match/web/static/app.js
+      - name: Offline regression tests
+        env:
+          SQLITE_PATH: ${{ runner.temp }}/resume-match/history.db
+          CHROMA_DIR: ${{ runner.temp }}/resume-match/chroma
+          BM25_INDEX_PATH: ${{ runner.temp }}/resume-match/bm25.pkl
+        run: uv run --no-sync python -m pytest -q -ra --junitxml=test-results.xml
+      - name: Upload test report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pytest-results
+          path: test-results.xml
+          if-no-files-found: ignore
+

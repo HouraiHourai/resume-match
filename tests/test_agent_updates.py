@@ -6,7 +6,7 @@ from langgraph.graph import StateGraph, START, END
 
 from resume_match.state import AgentState
 from resume_match.nodes import agent, tool_executor
-from resume_match.tools.base import ToolInput, ToolOutput
+from resume_match.tools.core.base import ToolInput, ToolOutput
 
 
 @pytest.mark.asyncio

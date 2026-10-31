@@ -1,5 +1,5 @@
 """提取和结构化 JD 的工具。"""
-from resume_match.tools.base import Tool, ToolInput, ToolOutput
+from resume_match.tools.core.base import Tool, ToolInput, ToolOutput
 from resume_match.services.jd_fetcher import fetch_jd
 from resume_match.services.jd_extractor import extract
 from resume_match.state import JDRequirements

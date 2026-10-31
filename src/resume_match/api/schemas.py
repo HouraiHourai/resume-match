@@ -11,12 +11,15 @@ from typing import Optional
 
 from pydantic import BaseModel, Field
 
-from resume_match.state import JDRequirements, GapAnalysis, ResumeAdvice, SimilarHistory
+from resume_match.state import JDRequirements, JDQuality, GapAnalysis, ResumeAdvice, SimilarHistory
 
 
 class AnalyzeResponse(BaseModel):
     """POST /api/analyze 的响应, 形状与 CLI 的 sample_output.json 一致。"""
     jd: Optional[JDRequirements] = Field(default=None, description="结构化 JD 需求, 提取失败则 null")
+    jd_quality: Optional[JDQuality] = Field(default=None, description="岗位可信度、要求合理性与投递价值评估")
+    stop_reason: Optional[str] = Field(default=None, description="流程提前结束的原因")
+    rewrite_skipped_reason: Optional[str] = Field(default=None, description="仅跳过简历改写的原因，仍可生成建议")
     gap: Optional[GapAnalysis] = Field(default=None, description="简历 gap 分析, 未产出则 null")
     advice: Optional[ResumeAdvice] = Field(default=None, description="改写建议 + 岗位准备重点, 未产出则 null")
     company_risk: Optional[dict] = Field(default=None, description="公司风险评估结果")

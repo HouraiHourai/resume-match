@@ -4,7 +4,7 @@ from unittest.mock import AsyncMock, MagicMock
 import pytest
 
 from resume_match.services import adviser as advise_module
-from resume_match.state import ResumeAdvice, BulletRewrite, GapAnalysis, JDRequirements
+from resume_match.state import ApplicationAdvice, ResumeAdvice, BulletRewrite, GapAnalysis, JDRequirements, JDQuality
 
 
 def _fake_advice() -> ResumeAdvice:
@@ -64,12 +64,15 @@ async def test_advise_success(monkeypatch):
     state = {
         "jd_structured": _fake_jd(),
         "gap_analysis": _fake_gap(),
+        "jd_quality": JDQuality(level="high", reason="职责明确、要求合理"),
         "resume_raw_text": "我的简历..." * 20,
     }
     result = await advise_module.advise(state)
 
     assert result["advice"] is fake
     assert result["advice"].should_apply == "worth_trying"
+    assert result["advice"].bullet_rewrites
+    assert result["rewrite_skipped_reason"] is None
     sm.ainvoke.assert_awaited_once()
 
 
@@ -91,6 +94,7 @@ async def test_advise_llm_error(monkeypatch):
     state = {
         "jd_structured": _fake_jd(),
         "gap_analysis": _fake_gap(),
+        "jd_quality": JDQuality(level="high", reason="职责明确、要求合理"),
         "resume_raw_text": "x" * 100,
     }
     result = await advise_module.advise(state)
@@ -98,3 +102,40 @@ async def test_advise_llm_error(monkeypatch):
     assert "advice" not in result
     assert "advise failed" in result["errors"][0]
     assert "boom" in result["errors"][0]
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("level", ["low", "uncertain"])
+async def test_advice_only_schema_excludes_rewrites_and_preserves_suggestions(monkeypatch, level):
+    # 即使返回值错误地带了改写，服务也不能把它写入报告。
+    fake = _fake_advice()
+    sm = _patch_model(monkeypatch, ainvoke_return=fake)
+    quality = JDQuality(level=level, reason="入职收费条件需核实",
+                        verification_questions=["是否必须先缴纳培训费？"])
+    result = await advise_module.advise({
+        "jd_structured": _fake_jd(), "gap_analysis": _fake_gap(),
+        "jd_quality": quality, "resume_raw_text": "做过一个 Agent 项目",
+    })
+    model = advise_module.get_deepseek_model()
+    model.with_structured_output.assert_called_once_with(ApplicationAdvice, method="function_calling")
+    assert "bullet_rewrites" not in ApplicationAdvice.model_json_schema()["properties"]
+    prompt = sm.ainvoke.await_args.args[0]
+    assert "Skip all resume rewriting" in prompt
+    assert "Suggest 3-5 bullet_rewrites" not in prompt
+    assert quality.reason in prompt and quality.verification_questions[0] in prompt
+    advice = result["advice"]
+    assert advice.bullet_rewrites == []
+    assert advice.should_apply_reason == fake.should_apply_reason
+    assert advice.interview_prep_focus == fake.interview_prep_focus
+    assert advice.questions_to_ask_interviewer == fake.questions_to_ask_interviewer
+    assert result["rewrite_skipped_reason"]
+    assert fake.bullet_rewrites  # 未原地修改模型返回值
+
+
+@pytest.mark.asyncio
+async def test_direct_service_cannot_generate_advice_before_quality_check(monkeypatch):
+    sm = _patch_model(monkeypatch, ainvoke_return=_fake_advice())
+    result = await advise_module.advise({"jd_structured": _fake_jd(), "gap_analysis": _fake_gap()})
+    assert "advice" not in result
+    assert result["errors"] == ["advise: missing prerequisite (jd_quality)"]
+    sm.ainvoke.assert_not_awaited()

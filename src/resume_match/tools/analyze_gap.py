@@ -1,5 +1,5 @@
 """分析简历与 JD 差距的工具。"""
-from resume_match.tools.base import Tool, ToolInput, ToolOutput
+from resume_match.tools.core.base import Tool, ToolInput, ToolOutput
 from resume_match.services.gap_analyzer import analyze
 
 
@@ -21,13 +21,16 @@ class AnalyzeGapTool(Tool):
 输入：JD 结构化信息 + 简历
 输出：匹配度评分、技能匹配情况、优势、关键缺口
 
-使用场景：在提取 JD 后，分析用户简历与岗位要求的匹配程度。"""
+使用场景：JD 提取和质量评估完成后，分析用户简历与岗位要求的匹配程度，不受质量等级限制。"""
 
     @property
     def input_schema(self) -> type[ToolInput]:
         return AnalyzeGapInput
 
     async def execute(self, input: AnalyzeGapInput, state: dict) -> ToolOutput:
+        quality = state.get("jd_quality")
+        if not quality:
+            return ToolOutput(success=False, result=None, error="岗位质量尚未评估，不能继续差距分析")
         # 检查前置条件：必须有 jd_structured
         if not state.get("jd_structured"):
             error_msg = "无法进行差距分析：JD 未成功提取"

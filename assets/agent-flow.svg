@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1120" viewBox="0 0 1440 1120" role="img" aria-labelledby="title desc">
+<title id="title">ResumeMatch ReAct and job-quality workflow</title>
+<desc id="desc">The agent selects permitted tools and observes their results in a loop. Extracting the JD and assessing its quality precede gap analysis and advice. An identified company must be checked before generating advice; company checks and gap analysis may occur in either order. All assessed jobs receive advice; only high-quality jobs receive resume rewrites.</desc>
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#64748b"/></marker>
+  <style>
+    text{font-family:Inter,Arial,sans-serif;fill:#1e293b}
+    .title{font-size:32px;font-weight:700}
+    .sub{font-size:17px;fill:#64748b}
+    .section{font-size:20px;font-weight:700}
+    .label{font-size:18px;font-weight:700}
+    .small{font-size:15px;fill:#475569}
+    .box{fill:white;stroke:#cbd5e1;stroke-width:1.5;rx:14}
+    .line{fill:none;stroke:#64748b;stroke-width:2;marker-end:url(#arrow)}
+    .optional{stroke-dasharray:7 5}
+  </style>
+</defs>
+<rect width="1440" height="1120" fill="#f8fafc"/>
+<text x="48" y="60" class="title">ResumeMatch</text>
+<text x="48" y="93" class="sub">ReAct orchestration · Evidence-based job quality · Conditional rewriting</text>
+<rect x="32" y="124" width="1376" height="366" rx="20" fill="#fff" stroke="#e2e8f0"/>
+<text x="58" y="160" class="section">1  Reason, act, observe</text>
+<rect x="58" y="200" width="210" height="90" class="box"/>
+<text x="163" y="234" text-anchor="middle" class="label">JD + PDF resume</text>
+<text x="163" y="262" text-anchor="middle" class="small">URL or pasted text</text>
+<path d="M268 245H314" class="line"/>
+<rect x="318" y="200" width="230" height="90" class="box"/>
+<text x="433" y="234" text-anchor="middle" class="label">API / CLI</text>
+<text x="433" y="262" text-anchor="middle" class="small">Parse PDF · initialize state</text>
+<path d="M548 245H604" class="line"/>
+<rect x="608" y="200" width="240" height="90" rx="14" fill="#fff7ed" stroke="#fb923c" stroke-width="2"/>
+<text x="728" y="234" text-anchor="middle" class="label">agent_think</text>
+<text x="728" y="262" text-anchor="middle" class="small">Choose an allowed action</text>
+<path d="M848 245H1035" class="line"/>
+<text x="940" y="229" text-anchor="middle" class="small">finish</text>
+<rect x="1040" y="200" width="306" height="90" class="box"/>
+<text x="1193" y="234" text-anchor="middle" class="label">Report → JSON / SSE</text>
+<text x="1193" y="262" text-anchor="middle" class="small">Web saves eligible history</text>
+<path d="M728 290V352" class="line"/>
+<text x="748" y="326" class="small">continue</text>
+<rect x="608" y="358" width="240" height="82" class="box"/>
+<text x="728" y="390" text-anchor="middle" class="label">execute_tool</text>
+<text x="728" y="418" text-anchor="middle" class="small">Validate · run · update state</text>
+<path d="M608 399H480" class="line"/>
+<rect x="220" y="358" width="254" height="82" class="box"/>
+<text x="347" y="390" text-anchor="middle" class="label">Observation</text>
+<text x="347" y="418" text-anchor="middle" class="small">Structured result / error</text>
+<path d="M347 358V322H580V218H603" class="line"/>
+<text x="1038" y="370" class="small">SSE streams progress during execution.</text>
+<text x="1038" y="399" class="small">CLI returns a report without saving it.</text>
+<text x="1038" y="428" class="small">Tool failures use separate error paths.</text>
+
+<rect x="32" y="514" width="1376" height="560" rx="20" fill="#fff" stroke="#e2e8f0"/>
+<text x="58" y="554" class="section">2  Tool prerequisites inside the loop</text>
+<text x="58" y="585" class="sub">The agent observes each result before choosing its next action.</text>
+<rect x="58" y="628" width="230" height="94" class="box"/>
+<text x="173" y="661" text-anchor="middle" class="label">extract_jd</text>
+<text x="173" y="691" text-anchor="middle" class="small">Fetch → structured JD</text>
+<path d="M288 675H338" class="line"/>
+<rect x="344" y="628" width="250" height="94" rx="14" fill="#fff7ed" stroke="#fb923c" stroke-width="2"/>
+<text x="469" y="661" text-anchor="middle" class="label">assess_jd_quality</text>
+<text x="469" y="691" text-anchor="middle" class="small">Quote and verify JD evidence</text>
+<path d="M594 675H668" class="line"/>
+<rect x="674" y="628" width="230" height="94" class="box"/>
+<text x="789" y="661" text-anchor="middle" class="label">analyze_gap</text>
+<text x="789" y="691" text-anchor="middle" class="small">All assessed quality levels</text>
+<path d="M904 675H990" class="line"/>
+<rect x="996" y="628" width="350" height="94" class="box"/>
+<text x="1171" y="661" text-anchor="middle" class="label">generate_advice</text>
+<text x="1171" y="691" text-anchor="middle" class="small">RAG context → quality-specific schema</text>
+
+<rect x="58" y="798" width="290" height="90" class="box"/>
+<text x="203" y="833" text-anchor="middle" class="label">check_company</text>
+<text x="203" y="861" text-anchor="middle" class="small">Required when a company is named</text>
+<path d="M469 722V758H203V792" class="line"/>
+<text x="58" y="926" class="small">Unverifiable quotes → uncertain</text>
+<text x="58" y="957" class="small">Low / uncertain does not stop advice.</text>
+<text x="58" y="988" class="small">Named companies are checked before advice.</text>
+<text x="58" y="1019" class="small">Match score is separate from job quality.</text>
+
+<rect x="410" y="798" width="270" height="90" class="box"/>
+<text x="545" y="833" text-anchor="middle" class="label">Hybrid history retrieval</text>
+<text x="545" y="861" text-anchor="middle" class="small">Chroma + BM25 → rerank → top 3</text>
+<path d="M680 843H731V760H1005V728" class="line optional"/>
+
+<path d="M1171 722V775H890V825" class="line"/>
+<path d="M1171 775H1217V825" class="line"/>
+<rect x="746" y="830" width="288" height="158" rx="14" fill="#ecfdf5" stroke="#34d399" stroke-width="1.5"/>
+<text x="890" y="865" text-anchor="middle" class="label">high</text>
+<text x="890" y="900" text-anchor="middle" class="small">Application advice + preparation</text>
+<text x="890" y="929" text-anchor="middle" class="label">Resume rewrites</text>
+<text x="890" y="964" text-anchor="middle" class="small">Quality card hidden in the Web UI</text>
+<rect x="1064" y="830" width="306" height="158" rx="14" fill="#fffbeb" stroke="#fbbf24" stroke-width="1.5"/>
+<text x="1217" y="865" text-anchor="middle" class="label">low / uncertain</text>
+<text x="1217" y="900" text-anchor="middle" class="small">Application advice + preparation</text>
+<text x="1217" y="929" text-anchor="middle" class="label">No resume rewrites</text>
+<text x="1217" y="964" text-anchor="middle" class="small">Risk signals + verification questions</text>
+<text x="746" y="1040" class="small">Advice remains available even when historical retrieval is empty or fails.</text>
+</svg>

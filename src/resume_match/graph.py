@@ -2,7 +2,8 @@
 
 Agent 自主推理并动态调用工具：
 - extract_jd: 提取 JD 结构
-- check_company: 检查公司风险（仅对不知名公司）
+- assess_jd_quality: 基于原文评估岗位质量，低质量或待核实则跳过改写
+- check_company: 已识别公司时，在生成建议前获取公司背景与简要分析
 - analyze_gap: 分析差距
 - generate_advice: 生成建议
 """

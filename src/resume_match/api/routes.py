@@ -23,6 +23,7 @@ _NODE_NAMES = {"agent_think", "execute_tool"}
 # 工具名称到前端步骤的映射（ReAct 架构下，工具 = 前端的步骤）
 _TOOL_TO_STEP = {
     "extract_jd": "extract",
+    "assess_jd_quality": "quality",
     "check_company": None,  # 不显示在前端进度条
     "analyze_gap": "analyze",
     "generate_advice": "advise",
@@ -51,6 +52,9 @@ def _assemble_report(final_state: dict) -> dict:
     """把图的最终 state 组装成对外报告(和 CLI / sample_output.json 一致)。"""
     return {
         "jd": final_state["jd_structured"].model_dump() if final_state.get("jd_structured") else None,
+        "jd_quality": final_state["jd_quality"].model_dump() if final_state.get("jd_quality") else None,
+        "stop_reason": final_state.get("stop_reason"),
+        "rewrite_skipped_reason": final_state.get("rewrite_skipped_reason"),
         "gap": final_state["gap_analysis"].model_dump() if final_state.get("gap_analysis") else None,
         "advice": final_state["advice"].model_dump() if final_state.get("advice") else None,
         "company_risk": final_state.get("company_risk"),
@@ -65,9 +69,9 @@ def _sse(event_type: str, data: dict) -> str:
 
 
 def _save_history(final_state: dict, report: dict, jd_text: str, resume_filename: str):
-    """分析完成后存档到 SQLite。返回 history_id; 若 JD 未成功提取则不存, 返回 None。"""
+    """保存已提取 JD 且无运行错误的报告，包含因岗位质量而跳过改写的结果。"""
     jd_obj = final_state.get("jd_structured")
-    if not jd_obj:
+    if not jd_obj or report.get("errors"):
         return None
     entry = HistoryEntry(
         created_at=datetime.now().isoformat(),
@@ -111,6 +115,9 @@ async def analyze_endpoint(
     # 图正常跑完即 200; 节点级的软错误(如某节点失败)随 errors 数组透出, 和 CLI 行为一致。
     return AnalyzeResponse(
         jd=final_state.get("jd_structured"),
+        jd_quality=final_state.get("jd_quality"),
+        stop_reason=final_state.get("stop_reason"),
+        rewrite_skipped_reason=final_state.get("rewrite_skipped_reason"),
         gap=final_state.get("gap_analysis"),
         advice=final_state.get("advice"),
         company_risk=final_state.get("company_risk"),
@@ -142,7 +149,6 @@ async def analyze_stream_endpoint(
         final_output: dict = {}
         current_tool: str | None = None
         fetch_completed = False
-        has_errors = False
 
         try:
             yield _sse("node_start", {"node": "fetch_jd"})
@@ -173,8 +179,7 @@ async def analyze_stream_endpoint(
                     elif kind == "on_chain_end":
                         output_state = data.get("output", {})
 
-                        if current_tool and output_state.get("errors"):
-                            has_errors = True
+                        if output_state.get("errors"):
                             yield _sse("error", {"message": output_state["errors"][-1]})
 
                         if current_tool:
@@ -189,12 +194,8 @@ async def analyze_stream_endpoint(
                         final_output = output
 
             report = _assemble_report(final_output)
-            # 仅存档含分析结果且未收到工具错误事件的报告。
-            has_valid_data = report.get("gap") or report.get("advice")
-            if has_valid_data and not has_errors:
-                report["history_id"] = _save_history(final_output, report, jd_text, resume_filename)
-            else:
-                report["history_id"] = None
+            # 与非流式接口共用存档条件；低质量和待核实也是正常业务结果。
+            report["history_id"] = _save_history(final_output, report, jd_text, resume_filename)
             yield _sse("final_result", report)
         except Exception as e:
             yield _sse("error", {"type": "internal_error", "message": str(e)})

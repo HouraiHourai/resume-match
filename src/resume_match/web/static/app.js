@@ -31,6 +31,7 @@ const els = {
   inputError: $("#input-error"),
   inputPanel: $("#input-panel"),
   resultPanel: $("#result-panel"),
+  materials: $("#analysis-materials"),
   stepper: $("#stepper"),
   sidebar: $("#sidebar"),
   scrim: $("#sidebar-scrim"),
@@ -48,6 +49,7 @@ const APPLY = {
 const STATUS_ICON = { matched: "circleCheck", partial: "triangle", missing: "circleX" };
 
 let activeHistoryId = null;
+let historyRequestId = 0;
 
 // ---------- 初始化 ----------
 els.file.addEventListener("change", () => {
@@ -57,6 +59,8 @@ els.file.addEventListener("change", () => {
 els.btn.addEventListener("click", startAnalysis);
 els.newBtn.addEventListener("click", () => { showInputView(); closeSidebar(); });
 els.scrim.addEventListener("click", closeSidebar);
+$("#materials-copy-url").addEventListener("click", () => copyAnalysisMaterial("#materials-url-text"));
+$("#materials-copy-jd").addEventListener("click", () => copyAnalysisMaterial("#materials-jd-text"));
 loadHistory();
 
 // ---------- Sidebar 开关(移动端) ----------
@@ -71,6 +75,8 @@ function closeSidebar() {
 
 // ---------- 视图切换 ----------
 function showInputView() {
+  historyRequestId += 1;
+  renderAnalysisMaterials(null);
   els.inputPanel.hidden = false;
   els.resultPanel.hidden = true;
   els.inputError.hidden = true;
@@ -89,6 +95,7 @@ function showError(msg) { els.inputError.textContent = msg; els.inputError.hidde
 const STAGE_TEXT = {
   fetch_jd: "正在加载...",
   extract: "正在解析...",
+  quality: "正在评估岗位质量...",
   analyze: "正在生成分析...",
   advise: "正在生成建议...",
   completed: "✓ 完成",
@@ -152,6 +159,8 @@ async function startAnalysis() {
     jd = `[公司: ${company}]\n${jd}`;
   }
 
+  historyRequestId += 1;
+  renderAnalysisMaterials(null);
   els.btn.disabled = true;
   els.btn.innerHTML = "分析中…";
   els.resultPanel.hidden = true;
@@ -217,6 +226,11 @@ function handleEvent(type, data) {
       markAllStepsDone();
     }
     renderResult(data);
+    if ((data.rewrite_skipped_reason || data.stop_reason) && (!data.errors || data.errors.length === 0)) {
+      const stageText = els.stepper.querySelector(".stage-text");
+      if (stageText) stageText.textContent = data.advice
+        ? "✓ 建议已生成，改写已跳过" : "✓ 评估完成，改写已跳过";
+    }
     // 分析产生了新历史 -> 刷新列表并高亮
     if (data.history_id) { loadHistory().then(() => setActiveHistory(data.history_id)); }
   } else if (type === "error") {
@@ -232,6 +246,7 @@ function handleEvent(type, data) {
 
 // ---------- 渲染结果 ----------
 function renderResult(report) {
+  renderAnalysisMaterials(null);
   // 如果有错误且没有有效的 gap 或 advice 数据，不显示结果面板
   if (report.errors && report.errors.length && !report.gap && !report.advice) {
     els.resultPanel.hidden = true;
@@ -249,6 +264,14 @@ function renderResult(report) {
 
   const gap = report.gap;
   const advice = report.advice;
+  renderQuality(report.jd_quality, report.rewrite_skipped_reason || report.stop_reason);
+  $(".result-head").hidden = Boolean(report.jd_quality && !gap && !advice);
+  $("#score-breakdown").closest(".result-block").hidden = !gap;
+  $("#skills").closest(".result-block").hidden = !gap;
+  const skipRewrites = Boolean(report.rewrite_skipped_reason ||
+    (report.jd_quality && report.jd_quality.level !== "high"));
+  $("#rewrites").closest(".result-block").hidden = !advice || skipRewrites;
+  $("#prep-list").closest(".result-block").hidden = !advice;
 
   if (gap) {
     $("#score-num").textContent = gap.overall_match_score;
@@ -259,6 +282,7 @@ function renderResult(report) {
     renderScoreBreakdown(gap.score_breakdown);
   } else {
     $("#score-num").textContent = "–";
+    $("#score-ring").style.background = "var(--bg-secondary)";
     $("#skills").innerHTML = "";
     $("#score-breakdown").innerHTML = "";
   }
@@ -272,7 +296,7 @@ function renderResult(report) {
 
     const rw = $("#rewrites");
     rw.innerHTML = "";
-    (advice.bullet_rewrites || []).forEach((b) => {
+    (skipRewrites ? [] : (advice.bullet_rewrites || [])).forEach((b) => {
       const div = document.createElement("div");
       div.className = "rewrite";
       div.innerHTML =
@@ -286,7 +310,7 @@ function renderResult(report) {
     $("#questions-block").hidden = qs.length === 0;
     fillList("#questions-list", qs);
   } else {
-    $("#apply-badge").innerHTML = "无建议";
+    $("#apply-badge").textContent = report.stop_reason ? "改写已跳过" : "无建议";
     $("#apply-badge").className = "badge";
     $("#apply-reason").textContent = "";
     $("#rewrites").innerHTML = "";
@@ -294,18 +318,72 @@ function renderResult(report) {
     $("#questions-block").hidden = true;
   }
 
-  renderCompanyRisk(report.company_risk);
+  renderCompanyRisk(report.company_risk, report.jd?.company);
   renderSimilar(report.similar_histories || []);
 }
 
-// 公司可信度评估
-function renderCompanyRisk(risk) {
+function renderQuality(quality, stopReason) {
+  const showQuality = quality && quality.level !== "high";
+  $("#quality-block").hidden = !showQuality;
+  $("#stop-reason").hidden = !stopReason;
+  $("#stop-reason").textContent = stopReason || "";
+  $("#quality-signals").replaceChildren();
+  $("#quality-questions").replaceChildren();
+  if (!showQuality) return;
+  const uncertain = quality.level === "uncertain";
+  $("#quality-title").textContent = uncertain ? "JD 描述不够明确" : "岗位质量";
+  $("#quality-label").hidden = uncertain;
+  $("#quality-label").textContent = uncertain ? "" : "质量较低";
+  $("#quality-label").dataset.level = quality.level;
+  const concerns = (quality.risk_signals || [])
+    .map(signal => (signal.point || "").trim().replace(/[。.!！?？;；,，、:：\s]+$/u, ""))
+    .filter(Boolean);
+  $("#quality-reason").hidden = uncertain && concerns.length > 0;
+  $("#quality-reason").textContent = uncertain
+    ? (concerns.length ? "" : "暂无需要提示的问题。")
+    : (quality.reason || "");
+  $("#quality-block .quality-note").hidden = uncertain;
+  $("#quality-signals").hidden = uncertain && concerns.length === 0;
+  if (uncertain) {
+    for (const point of concerns) {
+      const item = document.createElement("li");
+      item.textContent = `${point}。`;
+      $("#quality-signals").appendChild(item);
+    }
+  }
+  const signalGroups = uncertain
+    ? []
+    : [["正向线索", quality.positive_signals], ["风险线索", quality.risk_signals]];
+  for (const [label, signals] of signalGroups) {
+    for (const signal of signals || []) {
+      const item = document.createElement("li");
+      const prefix = label ? `${label}：` : "";
+      item.textContent = `${prefix}${signal.point}；JD 原文：“${signal.evidence}”`;
+      $("#quality-signals").appendChild(item);
+    }
+  }
+  const questions = quality.verification_questions || [];
+  $("#quality-questions-block").hidden = questions.length === 0;
+  fillList("#quality-questions", questions);
+}
+
+// 公司背景线索（知名度不代表招聘真实性已核验）
+function renderCompanyRisk(risk, company) {
   const block = $("#company-risk-block");
   const content = $("#company-risk-content");
+  const companyName = [risk?.company_name, company].find(
+    (name) => typeof name === "string" && name.trim()
+  )?.trim() || "";
 
   if (!risk) {
-    block.hidden = true;
+    block.hidden = !companyName;
     content.innerHTML = "";
+    if (companyName) {
+      content.innerHTML = `<div class="company-risk unavailable">
+        <div class="info-row"><strong>公司：</strong>${escapeHtml(companyName)}</div>
+        <div class="risk-message">本次报告暂无公司背景检查结果。</div>
+      </div>`;
+    }
     return;
   }
 
@@ -314,18 +392,18 @@ function renderCompanyRisk(risk) {
   // 根据 is_reliable 确定样式
   const riskLevelClass = risk.is_reliable ? "low" : "medium";
   const riskIcon = risk.is_reliable ? "circleCheck" : "triangle";
-  const riskLabel = risk.is_reliable ? "可信企业" : "需核实";
+  const companyType = risk.company_type || (risk.is_reliable ? "知名企业" : "背景待核实");
 
   let html = `<div class="company-risk ${riskLevelClass}">`;
   html += `<div class="risk-header">`;
-  html += `<span class="risk-badge">${svg(riskIcon, 18)} ${riskLabel}</span>`;
-  html += `<span class="company-type">${escapeHtml(risk.company_type || "")}</span>`;
+  html += `<span class="company-name">${escapeHtml(companyName || "公司名称未记录")}</span>`;
+  html += `<span class="risk-badge company-type">${svg(riskIcon, 18)} ${escapeHtml(companyType)}</span>`;
   html += `</div>`;
 
   // 显示判断理由
   if (risk.reasoning) {
     html += `<div class="risk-info">`;
-    html += `<div class="info-row"><strong>判断依据:</strong> ${escapeHtml(risk.reasoning)}</div>`;
+    html += `<div class="info-row">${escapeHtml(risk.reasoning)}</div>`;
     html += `</div>`;
   }
 
@@ -333,7 +411,9 @@ function renderCompanyRisk(risk) {
   if (risk.message) {
     html += `<div class="risk-message">`;
     // 保留消息中的换行符和格式
-    const messageHtml = escapeHtml(risk.message).replace(/\n/g, '<br>');
+    const message = risk.verification_status === "unverified"
+      ? risk.message : "公司名称仅提供背景线索，招聘方身份、岗位真实性与待遇仍需核实。";
+    const messageHtml = escapeHtml(message).replace(/\n/g, '<br>');
     html += messageHtml;
     html += `</div>`;
   }
@@ -485,6 +565,67 @@ function fillList(sel, items) {
   });
 }
 
+// ---------- 历史分析资料 ----------
+function renderAnalysisMaterials(detail) {
+  els.materials.hidden = !detail;
+  $("#materials-source").textContent = "";
+  $("#materials-url-text").textContent = "";
+  $("#materials-open-url").removeAttribute("href");
+  $("#materials-url-section").hidden = true;
+  $("#materials-jd-details").hidden = true;
+  $("#materials-jd-details").open = false;
+  $("#materials-jd-text").textContent = "";
+  $("#materials-missing-jd").hidden = true;
+  $("#materials-copy-status").textContent = "";
+  $("#materials-copy-status").hidden = true;
+  const createdAt = $("#materials-created-at");
+  createdAt.hidden = true;
+  createdAt.textContent = "";
+  createdAt.removeAttribute("datetime");
+  if (!detail) return;
+
+  const input = typeof detail.jd_text === "string" ? detail.jd_text : "";
+  const trimmed = input.trim();
+  let isUrl = false;
+  if (/^https?:\/\/\S+$/i.test(trimmed)) {
+    try {
+      const url = new URL(trimmed);
+      isUrl = ["http:", "https:"].includes(url.protocol);
+    } catch { /* 无效 URL 按原始文本展示 */ }
+  }
+  $("#materials-source").textContent = isUrl ? "岗位链接" : (trimmed ? "粘贴文本" : "未记录");
+  if (isUrl) {
+    $("#materials-url-section").hidden = false;
+    $("#materials-url-text").textContent = trimmed;
+    $("#materials-open-url").href = trimmed;
+  } else if (trimmed) {
+    $("#materials-jd-details").hidden = false;
+    $("#materials-jd-text").textContent = input;
+  } else {
+    $("#materials-missing-jd").hidden = false;
+  }
+  const date = detail.created_at ? new Date(detail.created_at) : null;
+  if (date && !Number.isNaN(date.getTime())) {
+    createdAt.dateTime = detail.created_at;
+    createdAt.textContent = `分析时间：${date.toLocaleString("zh-CN", { hour12: false })}`;
+    createdAt.hidden = false;
+  }
+}
+
+async function copyAnalysisMaterial(selector) {
+  const text = $(selector).textContent;
+  if (!text) return;
+  const requestId = historyRequestId;
+  let copied = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    copied = true;
+  } catch { /* 无剪贴板权限时保留可手动选择的原文 */ }
+  if (requestId !== historyRequestId || els.materials.hidden) return;
+  $("#materials-copy-status").textContent = copied ? "已复制。" : "复制失败，请手动选择内容复制。";
+  $("#materials-copy-status").hidden = false;
+}
+
 // ---------- History sidebar ----------
 async function loadHistory() {
   let entries = [];
@@ -546,17 +687,23 @@ function historyItem(e) {
 }
 
 async function openHistory(id) {
+  const requestId = ++historyRequestId;
   try {
     const resp = await fetch(`/api/history/${id}`);
     if (!resp.ok) throw new Error("加载失败");
     const detail = await resp.json();
+    if (requestId !== historyRequestId) return;
+    els.inputError.hidden = true;
     els.inputPanel.hidden = true;      // 切到详情视图
     resetSteps();  // 隐藏进度条（查看历史时不显示）
     renderResult(detail.full_result || {});
+    renderAnalysisMaterials(detail);
     setActiveHistory(id);
     closeSidebar();
     window.scrollTo({ top: 0, behavior: "smooth" });
   } catch {
+    if (requestId !== historyRequestId) return;
+    els.inputPanel.hidden = false;
     showError("加载历史详情失败。");
   }
 }

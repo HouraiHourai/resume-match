@@ -1,9 +1,10 @@
-"""工具注册中心。"""
-from resume_match.tools.base import Tool
+"""工具注册与发现；向 Agent 暴露五个业务工具。"""
+from resume_match.tools.core.base import Tool
 from resume_match.tools.extract_jd import ExtractJDTool
 from resume_match.tools.check_company import CheckCompanyTool
 from resume_match.tools.analyze_gap import AnalyzeGapTool
 from resume_match.tools.generate_advice import GenerateAdviceTool
+from resume_match.tools.assess_jd_quality import AssessJDQualityTool
 
 
 class ToolRegistry:
@@ -17,6 +18,7 @@ class ToolRegistry:
         """注册内置工具"""
         builtin = [
             ExtractJDTool(),
+            AssessJDQualityTool(),
             CheckCompanyTool(),
             AnalyzeGapTool(),
             GenerateAdviceTool(),

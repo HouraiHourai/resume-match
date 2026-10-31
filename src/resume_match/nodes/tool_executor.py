@@ -2,13 +2,14 @@
 from copy import deepcopy
 
 from resume_match.state import AgentState
-from resume_match.tools.registry import registry
+from resume_match.tools.core.registry import registry
 
 # 每个工具能提交的业务字段，不允许工具覆盖 reducer/循环控制字段。
 _OUTPUT_FIELDS = {
     "extract_jd": ("jd_raw_text", "company_name", "jd_structured"),
+    "assess_jd_quality": ("jd_quality",),
     "analyze_gap": ("gap_analysis",),
-    "generate_advice": ("advice", "similar_histories"),
+    "generate_advice": ("advice", "similar_histories", "rewrite_skipped_reason"),
     "check_company": (),
 }
 
@@ -30,6 +31,9 @@ async def execute_tool(state: AgentState) -> dict:
         # 参数名兼容
         if action == "check_company" and "company" in action_input and "company_name" not in action_input:
             action_input["company_name"] = action_input.pop("company")
+        if action == "check_company" and state.get("jd_structured") and state["jd_structured"].company:
+            # 始终检查当前 JD 的公司，避免模型遗漏参数或使用上一条记录的名称。
+            action_input["company_name"] = state["jd_structured"].company
 
         output = await tool.execute(tool.input_schema(**action_input), working) # 用参数构造 schema 对象，执行工具
         success, result, error = output.success, output.result, output.error
@@ -44,6 +48,13 @@ async def execute_tool(state: AgentState) -> dict:
     }]}
     if success:
         updates.update({key: working[key] for key in _OUTPUT_FIELDS.get(action, ()) if key in working})
+        if action == "extract_jd":
+            # 重新提取后，旧评估及其下游产出不能用于新 JD。
+            updates.update(jd_quality=None, gap_analysis=None, advice=None, stop_reason=None,
+                           company_risk=None, similar_histories=[], rewrite_skipped_reason=None)
+        if action == "assess_jd_quality":
+            updates.update(gap_analysis=None, advice=None, stop_reason=None, similar_histories=[],
+                           rewrite_skipped_reason=None)
         updates["tool_results"] = {**state.get("tool_results", {}), action: result}
         if action == "check_company":
             updates["company_risk"] = result
